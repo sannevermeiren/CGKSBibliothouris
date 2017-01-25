@@ -26,10 +26,16 @@ public class Book {
     public String getAuthor() {
         return author;
     }
+
     public String getDetails(){
         StringBuilder sb = new StringBuilder("bookDetails\r\n");
+<<<<<<< HEAD
         sb.append("isbn: " + isbn + "\r\n");
         sb.append("title: " + title + "\r\n");
+=======
+        sb.append("isbn: " + isbn+System.lineSeparator());
+        sb.append("title: " + title+System.lineSeparator());
+>>>>>>> 87b886bd0e129a470ad1347ba37f71e8e827a270
         sb.append("author: " + author);
         return sb.toString();
     }
