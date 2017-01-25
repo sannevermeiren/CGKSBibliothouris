@@ -7,6 +7,10 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Named
 public class MemberService {
+    public MemberService()
+    {
+
+    }
 
     @Inject
     private MemberRepository memberRepository;

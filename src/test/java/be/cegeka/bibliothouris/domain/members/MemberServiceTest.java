@@ -2,24 +2,20 @@
 
 import org.junit.Test;
 
+import javax.inject.Inject;
+
 import static org.junit.Assert.*;
 
-/**
- * Created by paulienl on 25/01/2017.
 
 public class MemberServiceTest {
-    MemberService memberService = new MemberService();
-    memberService.addMember(new Member("123", "Lemay", "paulien", "hendrik dewildestr", 24, 8501, "bissegem"));
-    memberService.addMember(new Member("123", "Devriend", "Jens", "eenStraat", 99, 9999, "Leuven"));
+    @Inject
+    private MemberService memberService;
 
     @Test
-    public void addMember() throws Exception {
-
+    public void testService()
+    {
+        memberService.addMember("123", "abc", "def", "hjk", 5, 1234, "hk");
+        memberService.getAllMembers()
     }
 
-    @Test
-    public void getAllMembers() throws Exception {
-
-    }
-
-} */
+}*/
