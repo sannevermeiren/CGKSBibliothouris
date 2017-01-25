@@ -10,9 +10,11 @@ import java.util.List;
 @Named
 public class BookRepository implements Search {
     private List<Book> books = new ArrayList<>();
+
     public List<Book> getAllBooks(){
         return books;
     }
+
     public void addBook(Book book){
         books.add(book);
     }

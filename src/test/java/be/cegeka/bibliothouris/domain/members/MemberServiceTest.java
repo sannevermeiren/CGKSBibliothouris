@@ -1,6 +1,5 @@
-package be.cegeka.bibliothouris.domain.users;
+/*package be.cegeka.bibliothouris.domain.members;
 
-import be.cegeka.bibliothouris.domain.books.Book;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,39 +16,39 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class UserServiceTest {
+public class MemberServiceTest {
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
 
     @InjectMocks
-    private UserService userService;
+    private MemberService memberService;
 
     @Mock
-    private UserRepository userRepository;
+    private MemberRepository memberRepository;
 
     @Before
     public void setUp() throws Exception {
-        ReflectionTestUtils.setField(userService, "counter", new AtomicLong(4l));
+        ReflectionTestUtils.setField(memberService, "counter", new AtomicLong(4l));
     }
 
     @Test
     public void addUser_ShouldCallUserRepository() throws Exception {
-        userService.addUser("Seppe");
+        memberService.addMember("1", "lemay", "paulien", 24, 8501, "bissegem");
 
-        verify(userRepository).addUser(new User(5l, "Seppe"));
+        verify(memberRepository).addMember(new Member(5l, "Seppe"));
     }
 
     @Test
     public void getAllUsers() throws Exception {
-        User user1 = new User(1l, "Seppe");
-        User user2 = new User(2l, "Sanne");
-        User user3 = new User(3l, "Xan");
+        Member member1 = new Member(1l, "Seppe");
+        Member member2 = new Member(2l, "Sanne");
+        Member member3 = new Member(3l, "Xan");
 
-        when(userRepository.getAllUsers()).thenReturn(Arrays.asList(user1, user2));
+        when(memberRepository.getAllMembers()).thenReturn(Arrays.asList(member1, member2));
 
-        assertThat(userService.getAllUsers()).containsOnly(user1, user2);
+        assertThat(memberService.getAllMembers()).containsOnly(member1, member2);
     }
 
 
-}
+}*/
