@@ -22,4 +22,7 @@ public class BookService {
         return bookRepository.getAllBooks();
     }
 
+    public String showDetails(long isbn){
+
+    }
 }
