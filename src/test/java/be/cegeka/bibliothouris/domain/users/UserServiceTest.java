@@ -1,5 +1,6 @@
 package be.cegeka.bibliothouris.domain.users;
 
+import be.cegeka.bibliothouris.domain.books.Book;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -49,4 +50,6 @@ public class UserServiceTest {
 
         assertThat(userService.getAllUsers()).containsOnly(user1, user2);
     }
+
+
 }
