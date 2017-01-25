@@ -21,21 +21,33 @@ public class BookRepository implements Search {
         books.add(book);
     }
 
-    @Override
-    public List<Book> searchByISBN(String ISBN) {
+
+    public List<Book> getBookListISBN(String ISBN) {
         List<Book> outputList = new ArrayList<>();
 
         for (Book book : books) {
             String isbnBook = book.getIsbn();
             if (isbnBook.startsWith(ISBN)) {
-                System.out.println(book.getTitle());
                 outputList.add(book);
             }
         }
 
-        if (outputList.isEmpty()){
+        if (outputList.isEmpty()) {
             System.out.println("There is no book found.");
         }
         return outputList;
+    }
+
+
+    @Override
+    public String searchByISBN(String ISBN) {
+        String output = "";
+        List<Book> booklist = getBookListISBN(ISBN);
+        for (Book book : booklist) {
+            String det = book.getDetails();
+            output+= det + "\n";
+        }
+        System.out.println(output);
+        return output;
     }
 }

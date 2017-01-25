@@ -26,6 +26,7 @@ public class Book {
     public String getAuthor() {
         return author;
     }
+
     public String getDetails(){
         StringBuilder sb = new StringBuilder("bookDetails\r\n");
         sb.append("isbn: " + isbn);
