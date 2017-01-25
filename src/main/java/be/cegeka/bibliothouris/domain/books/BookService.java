@@ -13,16 +13,13 @@ public class BookService {
     @Inject
     private BookRepository bookRepository;
 
-    private final AtomicLong counter = new AtomicLong();
+ //   private final AtomicLong counter = new AtomicLong();
 
-    public void addBook(String title, String author){
-        bookRepository.addBook(new Book(counter.incrementAndGet(), title, author));
+    public void addBook(String isbn, String title, String author){
+        bookRepository.addBook(new Book(isbn, title, author));
     }
     public List<Book> getAllBooks(){
         return bookRepository.getAllBooks();
     }
 
-    public String showDetails(long isbn){
-      return "prfffffft";
-    }
 }
