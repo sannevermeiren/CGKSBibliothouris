@@ -7,9 +7,9 @@ public class Book {
 
     private final long isbn;
     private final String title;
-    private Author author;
+    private String author;
 
-    public Book(long isbn, String title, Author author) {
+    public Book(long isbn, String title, String author) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -23,7 +23,7 @@ public class Book {
         return title;
     }
 
-    public Author getAuthor() {
+    public String getAuthor() {
         return author;
     }
 

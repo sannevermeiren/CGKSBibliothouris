@@ -15,10 +15,11 @@ public class BookService {
 
     private final AtomicLong counter = new AtomicLong();
 
-    public void addBook(String title, Author author){
+    public void addBook(String title, String author){
         bookRepository.addBook(new Book(counter.incrementAndGet(), title, author));
     }
     public List<Book> getAllBooks(){
         return bookRepository.getAllBooks();
     }
+
 }
