@@ -26,6 +26,14 @@ public class Book {
     public String getAuthor() {
         return author;
     }
+    public String getDetails(){
+        StringBuilder sb = new StringBuilder("bookDetails\r\n");
+        sb.append("isbn: " + isbn);
+        sb.append("title: " + title);
+        sb.append("author: " + author);
+        return sb.toString();
+    }
+
 
     @Override
     public boolean equals(Object o) {

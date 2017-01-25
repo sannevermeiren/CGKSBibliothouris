@@ -31,8 +31,9 @@ public class LibraryController {
     @RequestMapping(method = RequestMethod.POST)
     public
     @ResponseBody
-    void addBook(@RequestParam(value = "title", required = true) String title,
+    void addBook(@RequestParam(value = "isbn", required = true) String isbn,
+                 @RequestParam(value = "title", required = true) String title,
                  @RequestParam(value = "author", required = true) String author){
-        bookService.addBook(title, author);
+        bookService.addBook(isbn, title, author);
     }
 }
