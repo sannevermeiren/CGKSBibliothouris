@@ -22,7 +22,7 @@ public class BookRepositoryTest {
         bookRepos.addBook(b1);
         bookRepos.addBook(b2);
         bookRepos.addBook(b3);
-        Assertions.assertThat(bookRepos.searchByISBN("886-53-798-6928-1")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1title: Een boekauthor: iemand\r\n");
+        Assertions.assertThat(bookRepos.searchByISBN("886-53-798-6928-1")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor: iemand\r\n");
     }
 
     @Test

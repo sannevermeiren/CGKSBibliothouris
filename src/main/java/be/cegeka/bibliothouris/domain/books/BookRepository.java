@@ -1,5 +1,7 @@
 package be.cegeka.bibliothouris.domain.books;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +47,7 @@ public class BookRepository implements Search {
         List<Book> booklist = getBookListISBN(ISBN);
         for (Book book : booklist) {
             String det = book.getDetails();
-            output+= det + "\n";
+            output+= det + System.lineSeparator();
         }
         System.out.println(output);
         return output;

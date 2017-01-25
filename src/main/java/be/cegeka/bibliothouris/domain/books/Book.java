@@ -29,8 +29,8 @@ public class Book {
 
     public String getDetails(){
         StringBuilder sb = new StringBuilder("bookDetails\r\n");
-        sb.append("isbn: " + isbn);
-        sb.append("title: " + title);
+        sb.append("isbn: " + isbn+System.lineSeparator());
+        sb.append("title: " + title+System.lineSeparator());
         sb.append("author: " + author);
         return sb.toString();
     }
