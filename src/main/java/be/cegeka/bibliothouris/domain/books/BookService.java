@@ -23,6 +23,6 @@ public class BookService {
     }
 
     public String showDetails(long isbn){
-
+      return "prfffffft";
     }
 }
