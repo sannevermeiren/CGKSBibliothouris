@@ -20,8 +20,8 @@ public class BookRepository implements Search {
         return books;
     }
 
-
     public void addBook(Book book) {
+
         books.add(book);
     }
 
@@ -86,5 +86,15 @@ public class BookRepository implements Search {
     @Override
     public String searchByAuthor(String author) {
         return null;
+    }
+
+    public void enhancedBook(String isbn, String title, String lastName, String firstName) {
+        if (isbn != null && title != null && lastName != null) {
+            books.add(new Book(isbn, title, lastName, firstName));
+
+        }
+        else {
+            System.out.println("Invalid entry");
+        }
     }
 }

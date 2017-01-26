@@ -3,6 +3,7 @@ package be.cegeka.bibliothouris.application;
 import be.cegeka.bibliothouris.domain.books.Author;
 import be.cegeka.bibliothouris.domain.books.Book;
 import be.cegeka.bibliothouris.domain.books.BookService;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,6 +46,17 @@ public class LibraryController {
     @ResponseBody
     String searchByISBN(@RequestParam(value = "isbn", required = true) String isbn) {
         return bookService.searchByISBN(isbn);
+    }
+
+    @RequestMapping(path = "/enhancedEntry", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    void enhancedBook(@RequestParam(value = "isbn", required = true) String isbn,
+                      @RequestParam(value = "title", required = true) String title,
+                      @RequestParam(value = "lastName", required = true) String lastName,
+                      @RequestParam(value = "firstName", required = false) String firstName) {
+        bookService.enhancedBook(isbn, title, lastName,firstName);
+
     }
 
     @RequestMapping(path = "/searchTitle", method = RequestMethod.GET)

@@ -28,5 +28,6 @@ public class BookService {
     public String searchByTitle(String title){
         return bookRepository.searchByTitle(title);
     }
+    public void enhancedBook (String isbn, String title , String lastName, String firstName){bookRepository.enhancedBook(isbn,title, lastName,firstName);}
 
 }
