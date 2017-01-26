@@ -7,12 +7,14 @@ public class Book {
 
     private final String isbn;
     private final String title;
-    private String author;
+    private String authorLastName;
+    private String authorFirstName;
 
-    public Book(String isbn, String title, String author) {
+    public Book(String isbn, String title, String authorLastName, String authorFirstName) {
         this.isbn = isbn;
         this.title = title;
-        this.author = author;
+        this.authorLastName = authorLastName;
+        this.authorFirstName = authorFirstName;
     }
 
     public String getIsbn() {
@@ -23,20 +25,20 @@ public class Book {
         return title;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorFirstName() {
+        return authorFirstName;
     }
+
+    public String getAuthorLastName() { return authorLastName; }
 
     public String getDetails(){
         StringBuilder sb = new StringBuilder("bookDetails\r\n");
-<<<<<<< HEAD
-        sb.append("isbn: " + isbn + "\r\n");
-        sb.append("title: " + title + "\r\n");
-=======
+
         sb.append("isbn: " + isbn+System.lineSeparator());
         sb.append("title: " + title+System.lineSeparator());
->>>>>>> 87b886bd0e129a470ad1347ba37f71e8e827a270
-        sb.append("author: " + author);
+        sb.append("author first name: " + authorFirstName+"\r\n");
+        sb.append("author last name: " + authorLastName);
+
         return sb.toString();
     }
 
@@ -49,14 +51,16 @@ public class Book {
 
         if (!isbn.equals(book.isbn)) return false;
         if (!title.equals(book.title)) return false;
-        return author.equals(book.author);
+        if (!authorLastName.equals(book.authorLastName)) return false;
+        return authorFirstName.equals(book.authorFirstName);
     }
 
     @Override
     public int hashCode() {
         int result = isbn.hashCode();
         result = 31 * result + title.hashCode();
-        result = 31 * result + author.hashCode();
+        result = 31 * result + authorLastName.hashCode();
+        result = 31 * result + authorFirstName.hashCode();
         return result;
     }
 }

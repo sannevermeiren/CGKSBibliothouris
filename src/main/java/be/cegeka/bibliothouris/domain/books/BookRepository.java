@@ -15,19 +15,14 @@ import java.util.regex.Pattern;
 public class BookRepository implements Search {
     private List<Book> books = new ArrayList<>();
 
-<<<<<<< HEAD
+
     public List<Book> getAllBooks(){
         return books;
     }
 
-    public void addBook(Book book){
-=======
-    public List<Book> getAllBooks() {
-        return books;
-    }
+
 
     public void addBook(Book book) {
->>>>>>> 87b886bd0e129a470ad1347ba37f71e8e827a270
         books.add(book);
     }
 

@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  * Created by paulienl on 25/01/2017.
  */
 public class BookTest {
-    Book book =  new Book("978-90-27-3964-2", "Harry Potter", "Jk Rowling");
+    Book book =  new Book("978-90-27-3964-2", "Harry Potter", "Rowling", "JK");
 
     @Test
     public void getIsbn() throws Exception {
@@ -25,12 +25,17 @@ public class BookTest {
 
     @Test
     public void getAuthor() throws Exception {
-        Assertions.assertThat(book.getAuthor()).isEqualTo("Jk Rowling");
+        Assertions.assertThat(book.getAuthorFirstName()).isEqualTo("JK");
+    }
+
+    @Test
+    public void getAuthorLastName() throws Exception {
+        Assertions.assertThat(book.getAuthorLastName()).isEqualTo("Rowling");
     }
 
     @Test
     public void getDetailsTest() {
-        Assertions.assertThat(book.getDetails()).isEqualTo("bookDetails" +"\r\n" + "isbn: " + book.getIsbn() + "\r\n" + "title: " + book.getTitle() + "\r\n" + "author: " + book.getAuthor());
+        Assertions.assertThat(book.getDetails()).isEqualTo("bookDetails" +"\r\n" + "isbn: " + book.getIsbn() + "\r\n" + "title: " + book.getTitle() + "\r\n" + "author first name: " + book.getAuthorFirstName() + "\r\n"+ "author last name: " +book.getAuthorLastName());
     }
 
 }

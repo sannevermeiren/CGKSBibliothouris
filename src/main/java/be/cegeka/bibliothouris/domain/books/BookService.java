@@ -15,8 +15,8 @@ public class BookService {
 
  //   private final AtomicLong counter = new AtomicLong();
 
-    public void addBook(String isbn, String title, String author){
-        bookRepository.addBook(new Book(isbn, title, author));
+    public void addBook(String isbn, String title, String authorFirstName, String authorLastName){
+        bookRepository.addBook(new Book(isbn, title, authorFirstName, authorLastName));
     }
     public List<Book> getAllBooks(){
         return bookRepository.getAllBooks();
