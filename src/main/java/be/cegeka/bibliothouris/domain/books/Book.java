@@ -38,7 +38,7 @@ public class Book {
         sb.append("title: " + title+System.lineSeparator());
         sb.append("author first name: " + authorFirstName+"\r\n");
         sb.append("author last name: " + authorLastName);
-
+        
         return sb.toString();
     }
 
