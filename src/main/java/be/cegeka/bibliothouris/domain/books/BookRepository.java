@@ -16,10 +16,9 @@ public class BookRepository implements Search {
     private List<Book> books = new ArrayList<>();
 
 
-    public List<Book> getAllBooks(){
+    public List<Book> getAllBooks() {
         return books;
     }
-
 
 
     public void addBook(Book book) {
@@ -51,9 +50,41 @@ public class BookRepository implements Search {
         List<Book> booklist = getBookListISBN(ISBN);
         for (Book book : booklist) {
             String det = book.getDetails();
-            output+= det + System.lineSeparator();
+            output += det + System.lineSeparator();
         }
-            System.out.println(output);
         return output;
+    }
+
+    @Override
+    public String searchByTitle(String title) {
+        String output = "";
+        List<Book> booklist = getbookListTitle(title);
+        for (Book book : booklist) {
+            String det = book.getDetails();
+            output += det + System.lineSeparator();
+        }
+        return output;
+    }
+
+    private List<Book> getbookListTitle(String title) {
+        List<Book> outputList = new ArrayList<>();
+
+        for (Book book : books) {
+            String titleBook = book.getTitle();
+
+            if (titleBook.startsWith(title)) {
+                outputList.add(book);
+            }
+        }
+
+        if (outputList.isEmpty()) {
+            System.out.println("There is no book found.");
+        }
+        return outputList;
+    }
+
+    @Override
+    public String searchByAuthor(String author) {
+        return null;
     }
 }

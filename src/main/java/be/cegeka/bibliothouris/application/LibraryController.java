@@ -40,11 +40,18 @@ public class LibraryController {
         bookService.addBook(isbn, title, authorFirstName, authorLastName);
     }
 
-    @RequestMapping(path="/searchISBN",method = RequestMethod.GET)
+    @RequestMapping(path = "/searchISBN", method = RequestMethod.GET)
     public
     @ResponseBody
-    String searchByISBN(@RequestParam (value = "isbn", required = true) String isbn) {
+    String searchByISBN(@RequestParam(value = "isbn", required = true) String isbn) {
         return bookService.searchByISBN(isbn);
+    }
+
+    @RequestMapping(path = "/searchTitle", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String searchByTitle(@RequestParam(value = "title", required = true) String title) {
+        return bookService.searchByTitle(title);
     }
 }
 

@@ -25,5 +25,8 @@ public class BookService {
     public String searchByISBN(String ISBN){
         return bookRepository.searchByISBN(ISBN);
     }
+    public String searchByTitle(String title){
+        return bookRepository.searchByTitle(title);
+    }
 
 }
