@@ -7,4 +7,6 @@ import java.util.List;
  */
 public interface Search {
    String searchByISBN(String ISBN);
+   String searchByTitle(String title);
+   String searchByAuthor(String author);
 }
