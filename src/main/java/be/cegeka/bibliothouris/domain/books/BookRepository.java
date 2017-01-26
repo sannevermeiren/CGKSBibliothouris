@@ -89,7 +89,7 @@ public class BookRepository implements Search {
     }
 
     public void enhancedBook(String isbn, String title, String lastName, String firstName) {
-        if (isbn != null && title != null && lastName != null) {
+        if ((isbn != null) && (title != null) && (lastName != null) ){
             books.add(new Book(isbn, title, lastName, firstName));
 
         }
