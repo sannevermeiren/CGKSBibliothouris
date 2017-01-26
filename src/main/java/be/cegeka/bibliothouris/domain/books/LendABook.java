@@ -23,4 +23,10 @@ public class LendABook {
         this.inss = inss;
         this.isbn = isbn;
     }
+    public String getIsbn(){
+        return isbn;
+    }
+    public String getInss(){
+        return inss;
+    }
 }

@@ -120,4 +120,13 @@ public class BookRepository implements Search {
             System.out.println("Invalid entry");
         }
     }
+    public Book getBookOnIsbn (String isbn){
+        Book book1 = null;
+        for (Book book : books) {
+            if (book.getIsbn().equals(isbn)){
+                 book1 = book;
+            }
+        }
+        return book1;
+    }
 }

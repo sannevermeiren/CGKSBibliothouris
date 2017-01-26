@@ -50,4 +50,14 @@ public class MemberRepository {
             return ("No members found");
         }
     }
+    public Member getMember (String inss){
+        Member member1 = null;
+        for (Member member : members) {
+            if (member.getInss().equals(inss)){
+                member1 = member;
+
+            }
+
+        } return member1;
+    }
 }

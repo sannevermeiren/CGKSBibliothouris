@@ -1,5 +1,8 @@
 package be.cegeka.bibliothouris.domain.books;
 
+import be.cegeka.bibliothouris.domain.members.Member;
+import be.cegeka.bibliothouris.domain.members.MemberRepository;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
@@ -10,11 +13,13 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @Named
 public class BookService implements Validation {
+    private MemberRepository memberRepository;
     public List<LendABook> lendedBooks;
 
     public BookService(){
         this.lendedBooks = new ArrayList<>();
     }
+
 
     @Inject
     private BookRepository bookRepository;
@@ -63,4 +68,24 @@ public class BookService implements Validation {
     public boolean validateINSSExists(String INSS) {
         return false;
     }
+    public String getLendingMember (String isbn){
+        String lendedMember ="";
+        Book book1=null;
+        for (LendABook lendedBook : lendedBooks) {
+            if(lendedBook.getIsbn().equals(isbn)){
+                String inss = lendedBook.getInss();
+                Member member = memberRepository.getMember("inss");
+                 book1 = bookRepository.getBookOnIsbn("isbn");
+
+                String lastName = member.getLastName();
+                String firstName = member.getFirstName();
+                lendedMember = inss + lastName + firstName;
+            }
+
+        }
+        book1.setLenderInfo(lendedMember);
+        return lendedMember;
+    }
+
+
 }
