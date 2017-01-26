@@ -89,7 +89,7 @@ public class BookServiceTest {
         memberRepository.addMember(member2);
         memberRepository.addMember(member3);
 
-        bookService.lendABook("886-53-798-6928-1", "9887");
+       bookService.lendABook("886-53-798-6928-1", "9887");
     }
 
 }

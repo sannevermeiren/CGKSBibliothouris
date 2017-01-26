@@ -2,6 +2,7 @@ package be.cegeka.bibliothouris.domain.books;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 /**
@@ -9,7 +10,11 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @Named
 public class BookService {
-    private List<LendABook> lendedBooks;
+    public List<LendABook> lendedBooks;
+
+    public BookService(){
+        this.lendedBooks = new ArrayList<>();
+    }
 
     @Inject
     private BookRepository bookRepository;
