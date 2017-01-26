@@ -7,12 +7,14 @@ public class Book {
 
     private final String isbn;
     private final String title;
-    private String author;
+    private String authorLastName;
+    private String authorFirstName;
 
-    public Book(String isbn, String title, String author) {
+    public Book(String isbn, String title, String authorLastName, String authorFirstName) {
         this.isbn = isbn;
         this.title = title;
-        this.author = author;
+        this.authorLastName = authorLastName;
+        this.authorFirstName = authorFirstName;
     }
 
     public String getIsbn() {
@@ -23,18 +25,22 @@ public class Book {
         return title;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorFirstName() {
+        return authorFirstName;
     }
+
+    public String getAuthorLastName() { return authorLastName; }
 
     public String getDetails(){
         StringBuilder sb = new StringBuilder("bookDetails\r\n");
+
         sb.append("isbn: " + isbn+System.lineSeparator());
         sb.append("title: " + title+System.lineSeparator());
-        sb.append("author: " + author);
+        sb.append("author first name: " + authorFirstName+"\r\n");
+        sb.append("author last name: " + authorLastName);
+
         return sb.toString();
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -43,16 +49,18 @@ public class Book {
 
         Book book = (Book) o;
 
-        if (isbn != null ? !isbn.equals(book.isbn) : book.isbn != null) return false;
-        if (title != null ? !title.equals(book.title) : book.title != null) return false;
-        return author != null ? author.equals(book.author) : book.author == null;
+        if (!isbn.equals(book.isbn)) return false;
+        if (!title.equals(book.title)) return false;
+        if (!authorLastName.equals(book.authorLastName)) return false;
+        return authorFirstName.equals(book.authorFirstName);
     }
 
     @Override
     public int hashCode() {
-        int result = isbn != null ? isbn.hashCode() : 0;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (author != null ? author.hashCode() : 0);
+        int result = isbn.hashCode();
+        result = 31 * result + title.hashCode();
+        result = 31 * result + authorLastName.hashCode();
+        result = 31 * result + authorFirstName.hashCode();
         return result;
     }
 }

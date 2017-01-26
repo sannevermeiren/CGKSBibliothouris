@@ -33,8 +33,9 @@ public class LibraryController {
     @ResponseBody
     void addBook(@RequestParam(value = "isbn", required = true) String isbn,
                  @RequestParam(value = "title", required = true) String title,
-                 @RequestParam(value = "author", required = true) String author){
-        bookService.addBook(isbn, title, author);
+                 @RequestParam(value = "authorFirstName", required = true) String authorFirstName,
+                @RequestParam(value="authorLastName", required = true) String authorLastName) {
+                bookService.addBook(isbn, title, authorFirstName, authorLastName);
     }
 
 }
