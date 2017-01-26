@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @Named
 public class BookService {
+    private List<LendABook> lendedBooks;
 
     @Inject
     private BookRepository bookRepository;
@@ -30,6 +31,12 @@ public class BookService {
     }
     public String searchByAuthor(String author){
         return bookRepository.searchByAuthor(author);
+    }
+
+    public LendABook lendABook(String isbn, String inss){
+        LendABook len = new LendABook(inss, isbn);
+        lendedBooks.add(len);
+        return len;
     }
 
 }

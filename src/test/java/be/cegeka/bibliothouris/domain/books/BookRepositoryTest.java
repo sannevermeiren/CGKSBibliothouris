@@ -17,8 +17,8 @@ public class BookRepositoryTest {
     Book b1 = new Book("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand");
     Book b2 = new Book("978-90-274-3964-2", "Een ander boek", "van iemand anders", "voornaamEenAnder");
     Book b3 = new Book("491-87-192-6758-3", "Nog een boek", "nog iemand anders", "voornaamEenAnder");
-    Book b4 = new Book("886-53-798-7895-6", "Een boektest", "van een auteur", "voornaamEenAnder");
-    Book b5 = new Book("698-78-988-4568-7", "BoekjesBoekjes", "iemandiemand", "voornaamiemand");
+    Book b4 = new Book("886-53-798-7125-3", "Een boektest", "van een auteur", "voornaamEenAnder");
+    Book b5 = new Book("769-42-815-7432-4", "BoekjesBoekjes", "iemandiemand", "voornaamiemand");
 
     @Test
     public void listAllBookTest()
@@ -51,7 +51,7 @@ public class BookRepositoryTest {
                 "isbn: 886-53-798-6928-1\r\n" +
                 "title: Een boek\r\n" +
                 "author first name: voornaamiemand\r\n" +
-                "author last name: iemand\r\nbookDetails\r\nisbn: 886-53-798-7895-6\r\ntitle: Een boektest\r\nauthor first name: voornaamEenAnder\r\nauthor last name: van een auteur\r\n");
+                "author last name: iemand\r\nbookDetails\r\nisbn: 886-53-798-7125-3\r\ntitle: Een boektest\r\nauthor first name: voornaamEenAnder\r\nauthor last name: van een auteur\r\n");
     }
 
     @Test
@@ -80,7 +80,7 @@ public class BookRepositoryTest {
                 "isbn: 886-53-798-6928-1\r\n" +
                 "title: Een boek\r\n" +
                 "author first name: voornaamiemand\r\n" +
-                "author last name: iemand\r\nbookDetails\r\nisbn: 886-53-798-7895-6\r\ntitle: Een boektest\r\nauthor first name: voornaamEenAnder\r\nauthor last name: van een auteur\r\n");
+                "author last name: iemand\r\nbookDetails\r\nisbn: 886-53-798-7125-3\r\ntitle: Een boektest\r\nauthor first name: voornaamEenAnder\r\nauthor last name: van een auteur\r\n");
     }
 
     @Test
@@ -90,11 +90,6 @@ public class BookRepositoryTest {
         bookRepos.addBook(b3);
         Assertions.assertThat(bookRepos.searchByTitle("blablabla")).isEqualTo("");
     }
-
-
-
-
-
 
     @Test
     public void testSearchAuthor() {
@@ -114,7 +109,7 @@ public class BookRepositoryTest {
                 "isbn: 886-53-798-6928-1\r\n" +
                 "title: Een boek\r\n" +
                 "author first name: voornaamiemand\r\n" +
-                "author last name: iemand\r\nbookDetails\r\nisbn: 698-78-988-4568-7\r\ntitle: BoekjesBoekjes\r\nauthor first name: voornaamiemand\r\nauthor last name: iemandiemand\r\n");
+                "author last name: iemand\r\nbookDetails\r\nisbn: 769-42-815-7432-4\r\ntitle: BoekjesBoekjes\r\nauthor first name: voornaamiemand\r\nauthor last name: iemandiemand\r\n");
     }
 
     @Test
@@ -133,4 +128,5 @@ public class BookRepositoryTest {
         Assertions.assertThat(bookRepos.searchByAuthor("iemand")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\n");
 
     }
+
 }

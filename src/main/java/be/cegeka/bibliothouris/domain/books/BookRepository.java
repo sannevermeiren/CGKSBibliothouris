@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 @Named
 public class BookRepository implements Search {
     private List<Book> books = new ArrayList<>();
+    private List<String> isbnNumbers = new ArrayList<>();
 
 
     public List<Book> getAllBooks() {
@@ -23,6 +24,7 @@ public class BookRepository implements Search {
 
     public void addBook(Book book) {
         books.add(book);
+        isbnNumbers.add(book.getIsbn());
     }
 
 

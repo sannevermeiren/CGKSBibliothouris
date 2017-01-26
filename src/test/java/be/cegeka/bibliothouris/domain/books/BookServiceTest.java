@@ -1,6 +1,7 @@
 package be.cegeka.bibliothouris.domain.books;
 
 import be.cegeka.bibliothouris.domain.members.Member;
+import be.cegeka.bibliothouris.domain.members.MemberRepository;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,8 +27,16 @@ public class BookServiceTest {
 
     @Mock
     private BookRepository bookRepository;
+    @Mock
+    private MemberRepository memberRepository;
 
+    Book book1 = new Book("886-53-798-6928-1", "lord of the rings", "jrr", "tolkien");
+    Book book2 = new Book("978-90-274-3964-2", "ilias", "homeros", "unknown");
+    Book book3 = new Book("491-87-192-6758-3", "titel", "auteursnaam", "auteursvoornaam");
 
+    Member member1 = new Member("556", "Elize", "Lodewycks", "eenStraat", 12, 9999, "verWeg");
+    Member member2 = new Member("459", "Jens", "Devriendt", "eenAndereStraat", 56, 1569, "ergens");
+    Member member3 = new Member("59", "Kevin", "familienaam", "eenDerdeStraat", 45, 789, "ergensAnders");
 
     @Test
     public void addMember_ShouldCallUserRepository() throws Exception {
@@ -38,13 +47,50 @@ public class BookServiceTest {
 
     @Test
     public void getAllUsers() throws Exception {
-        Book book1 = new Book("456", "lord of the rings", "jrr", "tolkien");
-        Book book2 = new Book("159", "ilias", "homeros", "unknown");
-        Book book3 = new Book("45", "titel", "auteursnaam", "auteursvoornaam");
-
         when(bookRepository.getAllBooks()).thenReturn(Arrays.asList(book1, book2));
 
         assertThat(bookService.getAllBooks()).containsOnly(book1, book2);
     }
+/*
+    @Test
+    public void lendABookTest(){
 
+        bookRepository.addBook(book1);
+        bookRepository.addBook(book2);
+        bookRepository.addBook(book3);
+        memberRepository.addMember(member1);
+        memberRepository.addMember(member2);
+        memberRepository.addMember(member3);
+
+        bookService.lendABook("886-53-798-6928-1","556" );
+    }
+
+    @Test
+    public void lendABookWhenBookNotExists(){
+
+        bookRepository.addBook(book1);
+        bookRepository.addBook(book2);
+        bookRepository.addBook(book3);
+        memberRepository.addMember(member1);
+        memberRepository.addMember(member2);
+        memberRepository.addMember(member3);
+
+        bookService.lendABook("987", "556");
+    }
+
+    @Test
+    public void lendABookWhenMemberDoesNotExists(){
+
+        bookRepository.addBook(book1);
+        bookRepository.addBook(book2);
+        bookRepository.addBook(book3);
+
+        memberRepository.addMember(member1);
+        memberRepository.addMember(member2);
+        memberRepository.addMember(member3);
+
+        bookService.lendABook("886-53-798-6928-1", "9887");
+    }
+
+*/
 }
