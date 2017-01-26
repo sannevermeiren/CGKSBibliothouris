@@ -28,5 +28,8 @@ public class BookService {
     public String searchByTitle(String title){
         return bookRepository.searchByTitle(title);
     }
+    public String searchByAuthor(String author){
+        return bookRepository.searchByAuthor(author);
+    }
 
 }
