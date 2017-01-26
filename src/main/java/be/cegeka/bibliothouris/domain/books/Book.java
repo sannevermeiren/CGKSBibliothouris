@@ -71,4 +71,8 @@ public class Book {
         result = 31 * result + authorFirstName.hashCode();
         return result;
     }
+
+    public void setLended(boolean lended) {
+        this.lended = lended;
+    }
 }
