@@ -29,6 +29,10 @@ public class BookService {
     public String searchByTitle(String title){
         return bookRepository.searchByTitle(title);
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 66284de9d0ee236e3894a821d75f8b579586840f
     public String searchByAuthor(String author){
         return bookRepository.searchByAuthor(author);
     }
@@ -41,5 +45,11 @@ public class BookService {
         lendedBooks.add(len);
         return len;
     }
+<<<<<<< HEAD
+    public void enhancedBook (String isbn, String title , String lastName, String firstName){
+        bookRepository.enhancedBook(isbn,title, lastName,firstName);}
+
+=======
+>>>>>>> 66284de9d0ee236e3894a821d75f8b579586840f
 
 }
