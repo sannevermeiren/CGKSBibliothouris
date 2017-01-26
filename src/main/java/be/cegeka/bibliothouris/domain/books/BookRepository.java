@@ -32,6 +32,7 @@ public class BookRepository implements Search {
 
         for (Book book : books) {
             String isbnBook = book.getIsbn();
+
             if (isbnBook.startsWith(ISBN)) {
                 outputList.add(book);
             }
