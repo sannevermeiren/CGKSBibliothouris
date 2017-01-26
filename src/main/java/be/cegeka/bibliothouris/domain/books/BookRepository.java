@@ -90,18 +90,18 @@ public class BookRepository implements Search {
         String output = "";
         List<Book> booklist = getbookListAuthor(author);
         for (Book book : booklist) {
-            output+= book.getDetails() + System.lineSeparator();
+            output += book.getDetails() + System.lineSeparator();
         }
 
         return output;
     }
 
-    public List<Book> getbookListAuthor(String author){
+    public List<Book> getbookListAuthor(String author) {
         List<Book> booklist = new ArrayList<>();
         for (Book book : books) {
             String fullName = book.getAuthorFirstName() + " " + book.getAuthorLastName();
             String lastName = book.getAuthorLastName();
-            if(fullName.startsWith(author) || lastName.startsWith(author)){
+            if (fullName.startsWith(author) || lastName.startsWith(author)) {
                 booklist.add(book);
             }
         }
@@ -109,11 +109,10 @@ public class BookRepository implements Search {
     }
 
     public void enhancedBook(String isbn, String title, String lastName, String firstName) {
-        if ((isbn != null) && (title != null) && (lastName != null) ){
+        if ((isbn != null) && (title != null) && (lastName != null)) {
             books.add(new Book(isbn, title, lastName, firstName));
 
-        }
-        else {
+        } else {
             System.out.println("Invalid entry");
         }
     }
