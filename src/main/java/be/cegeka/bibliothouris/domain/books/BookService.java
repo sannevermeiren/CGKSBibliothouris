@@ -22,4 +22,8 @@ public class BookService {
         return bookRepository.getAllBooks();
     }
 
+    public String searchByISBN(String ISBN){
+        return bookRepository.searchByISBN(ISBN);
+    }
+
 }

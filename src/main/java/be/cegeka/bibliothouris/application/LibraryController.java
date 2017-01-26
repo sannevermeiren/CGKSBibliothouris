@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import java.util.List;
+
 /**
  * Created by jensde on 25/01/2017.
  */
@@ -25,17 +26,25 @@ public class LibraryController {
     @RequestMapping(method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Book> getBooks(){
+    List<Book> getBooks() {
         return bookService.getAllBooks();
     }
+
     @RequestMapping(method = RequestMethod.POST)
     public
     @ResponseBody
     void addBook(@RequestParam(value = "isbn", required = true) String isbn,
                  @RequestParam(value = "title", required = true) String title,
                  @RequestParam(value = "authorFirstName", required = true) String authorFirstName,
-                @RequestParam(value="authorLastName", required = true) String authorLastName) {
-                bookService.addBook(isbn, title, authorFirstName, authorLastName);
+                 @RequestParam(value = "authorLastName", required = true) String authorLastName) {
+        bookService.addBook(isbn, title, authorFirstName, authorLastName);
     }
 
+    @RequestMapping(path="/searchISBN",method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String searchByISBN(@RequestParam (value = "isbn", required = true) String isbn) {
+        return bookService.searchByISBN(isbn);
+    }
 }
+
