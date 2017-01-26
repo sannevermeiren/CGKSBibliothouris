@@ -24,4 +24,8 @@ public class MemberService {
     public List<Member> getAllMembers() {
         return memberRepository.getAllMembers();
     }
+
+    public String getAllMemberDetails(){
+        return memberRepository.getAllMemberDetails();
+    }
 }
