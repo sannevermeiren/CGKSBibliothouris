@@ -14,42 +14,36 @@ public class BookService {
     @Inject
     private BookRepository bookRepository;
 
- //   private final AtomicLong counter = new AtomicLong();
+    //   private final AtomicLong counter = new AtomicLong();
 
-    public void addBook(String isbn, String title, String authorFirstName, String authorLastName){
+    public void addBook(String isbn, String title, String authorFirstName, String authorLastName) {
         bookRepository.addBook(new Book(isbn, title, authorFirstName, authorLastName));
     }
-    public List<Book> getAllBooks(){
+
+    public List<Book> getAllBooks() {
         return bookRepository.getAllBooks();
     }
 
-    public String searchByISBN(String ISBN){
+    public String searchByISBN(String ISBN) {
         return bookRepository.searchByISBN(ISBN);
     }
-    public String searchByTitle(String title){
+
+    public String searchByTitle(String title) {
         return bookRepository.searchByTitle(title);
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 66284de9d0ee236e3894a821d75f8b579586840f
-    public String searchByAuthor(String author){
+    public String searchByAuthor(String author) {
         return bookRepository.searchByAuthor(author);
     }
-    public void enhancedBook(String isbn, String title, String lastName, String firstName){
-        bookRepository.enhancedBook(isbn, title,lastName,firstName);
+
+    public void enhancedBook(String isbn, String title, String lastName, String firstName) {
+        bookRepository.enhancedBook(isbn, title, lastName, firstName);
     }
 
-    public LendABook lendABook(String isbn, String inss){
+    public LendABook lendABook(String isbn, String inss) {
         LendABook len = new LendABook(inss, isbn);
         lendedBooks.add(len);
         return len;
     }
-<<<<<<< HEAD
-    public void enhancedBook (String isbn, String title , String lastName, String firstName){
-        bookRepository.enhancedBook(isbn,title, lastName,firstName);}
-
-=======
->>>>>>> 66284de9d0ee236e3894a821d75f8b579586840f
 
 }
