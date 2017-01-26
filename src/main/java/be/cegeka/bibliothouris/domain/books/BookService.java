@@ -63,4 +63,7 @@ public class BookService implements Validation {
     public boolean validateINSSExists(String INSS) {
         return false;
     }
+
+    public void lendABook(String s, String s1) {
+    }
 }

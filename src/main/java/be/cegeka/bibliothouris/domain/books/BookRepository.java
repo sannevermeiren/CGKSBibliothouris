@@ -37,12 +37,10 @@ public class BookRepository implements Search {
 
         for (Book book : books) {
             String isbnBook = book.getIsbn();
-
             if (isbnBook.startsWith(ISBN)) {
                 outputList.add(book);
             }
         }
-
         if (outputList.isEmpty()) {
             System.out.println("There is no book found.");
         }
@@ -119,5 +117,9 @@ public class BookRepository implements Search {
         } else {
             System.out.println("Invalid entry");
         }
+    }
+
+    public Book getBookByISBN(String ISBN ){
+        return null;
     }
 }
