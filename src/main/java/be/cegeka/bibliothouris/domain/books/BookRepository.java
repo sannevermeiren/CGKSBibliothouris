@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 @Named
 public class BookRepository implements Search {
     private List<Book> books = new ArrayList<>();
+    private List<String> isbnNumbers = new ArrayList<>();
 
 
     public List<Book> getAllBooks() {
@@ -23,6 +24,7 @@ public class BookRepository implements Search {
     public void addBook(Book book) {
 
         books.add(book);
+        isbnNumbers.add(book.getIsbn());
     }
 
 
@@ -85,7 +87,25 @@ public class BookRepository implements Search {
 
     @Override
     public String searchByAuthor(String author) {
-        return null;
+        String output = "";
+        List<Book> booklist = getbookListAuthor(author);
+        for (Book book : booklist) {
+            output+= book.getDetails() + System.lineSeparator();
+        }
+
+        return output;
+    }
+
+    public List<Book> getbookListAuthor(String author){
+        List<Book> booklist = new ArrayList<>();
+        for (Book book : books) {
+            String fullName = book.getAuthorFirstName() + " " + book.getAuthorLastName();
+            String lastName = book.getAuthorLastName();
+            if(fullName.startsWith(author) || lastName.startsWith(author)){
+                booklist.add(book);
+            }
+        }
+        return booklist;
     }
 
     public void enhancedBook(String isbn, String title, String lastName, String firstName) {

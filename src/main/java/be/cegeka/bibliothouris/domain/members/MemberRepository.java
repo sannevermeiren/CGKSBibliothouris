@@ -8,14 +8,21 @@ import java.util.List;
 public class MemberRepository {
 
     private List<Member> members = new ArrayList<>();
+    private List<String > inssNumbers = new ArrayList<>();
 
     public List<Member> getAllMembers() {
         return members;
     }
 
+    public List<String> getInssNumbers() {
+        return inssNumbers;
+    }
+
     public void addMember(Member member){
         members.add(member);
+        inssNumbers.add(member.getInss());
     }
+
 
     public String getMemberDetails(Member member)
     {
