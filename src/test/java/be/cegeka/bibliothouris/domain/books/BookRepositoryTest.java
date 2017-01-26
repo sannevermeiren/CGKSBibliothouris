@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -16,7 +19,19 @@ public class BookRepositoryTest {
     Book b3 = new Book("491-87-192-6758-3", "Nog een boek", "nog iemand anders", "voornaamEenAnder");
     Book b4 = new Book("886-53-798-7895-6", "een test boek", "van een auteur", "voornaamEenAnder");
 
+    @Test
+    public void listAllBookTest()
+    {
+        List<Book> testList = new ArrayList<Book>();
+        bookRepos.addBook(b1);
+        bookRepos.addBook(b2);
+        bookRepos.addBook(b3);
+        testList.add(b1);
+        testList.add(b2);
+        testList.add(b3);
+        Assertions.assertThat(testList).isEqualTo(bookRepos.getAllBooks());
 
+    }
     @Test
     public void testSearchISBN() {
         bookRepos.addBook(b1);

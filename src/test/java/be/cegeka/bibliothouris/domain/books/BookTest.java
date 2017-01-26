@@ -2,7 +2,11 @@ package be.cegeka.bibliothouris.domain.books;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.assertj.core.api.Assertions;
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +14,7 @@ import static org.junit.Assert.*;
  * Created by paulienl on 25/01/2017.
  */
 public class BookTest {
+
     Book book =  new Book("978-90-27-3964-2", "Harry Potter", "Rowling", "JK");
 
     @Test
