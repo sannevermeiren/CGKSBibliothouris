@@ -2,6 +2,7 @@ package be.cegeka.bibliothouris.domain.books;
 
 import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,6 +31,7 @@ public class BookServiceTest {
     @Mock
     private MemberRepository memberRepository;
 
+
     Book book1 = new Book("886-53-798-6928-1", "lord of the rings", "jrr", "tolkien");
     Book book2 = new Book("978-90-274-3964-2", "ilias", "homeros", "unknown");
     Book book3 = new Book("491-87-192-6758-3", "titel", "auteursnaam", "auteursvoornaam");
@@ -41,19 +43,25 @@ public class BookServiceTest {
     @Test
     public void addMember_ShouldCallUserRepository() throws Exception {
         bookService.addBook("123", "harry", "JK", "Rowling");
-
         verify(bookRepository).addBook(new Book("123", "harry", "JK", "Rowling"));
     }
 
     @Test
     public void getAllUsers() throws Exception {
         when(bookRepository.getAllBooks()).thenReturn(Arrays.asList(book1, book2));
-
         assertThat(bookService.getAllBooks()).containsOnly(book1, book2);
     }
 
     @Test
-    public void lendABookTest(){
+    public void bookExists(){
+        when(bookRepository.validateISBNExists("886-53-798-6928-1")).thenReturn(true);
+        assertThat(bookRepository.validateISBNExists("886-53-798-6928-1")).isTrue();
+    }
+
+
+
+    @Test
+    public void lendABookTest() {
 
         bookRepository.addBook(book1);
         bookRepository.addBook(book2);
@@ -62,11 +70,11 @@ public class BookServiceTest {
         memberRepository.addMember(member2);
         memberRepository.addMember(member3);
 
-        bookService.lendABook("886-53-798-6928-1","556" );
+        bookService.lendABook("886-53-798-6928-1", "556");
     }
 
     @Test
-    public void lendABookWhenBookNotExists(){
+    public void lendABookWhenBookNotExists() {
 
         bookRepository.addBook(book1);
         bookRepository.addBook(book2);
@@ -79,7 +87,7 @@ public class BookServiceTest {
     }
 
     @Test
-    public void lendABookWhenMemberDoesNotExists(){
+    public void lendABookWhenMemberDoesNotExists() {
 
         bookRepository.addBook(book1);
         bookRepository.addBook(book2);
@@ -89,7 +97,7 @@ public class BookServiceTest {
         memberRepository.addMember(member2);
         memberRepository.addMember(member3);
 
-       bookService.lendABook("886-53-798-6928-1", "9887");
+        bookService.lendABook("886-53-798-6928-1", "9887");
     }
 
 }

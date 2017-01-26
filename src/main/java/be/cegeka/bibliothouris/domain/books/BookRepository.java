@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * Created by jensde on 25/01/2017.
  */
 @Named
-public class BookRepository implements Search {
+public class BookRepository implements Search, Validation {
     private List<Book> books = new ArrayList<>();
     private List<String> isbnNumbers = new ArrayList<>();
 
@@ -26,7 +26,6 @@ public class BookRepository implements Search {
     }
 
     public void addBook(Book book) {
-
         books.add(book);
         isbnNumbers.add(book.getIsbn());
     }
@@ -37,12 +36,10 @@ public class BookRepository implements Search {
 
         for (Book book : books) {
             String isbnBook = book.getIsbn();
-
             if (isbnBook.startsWith(ISBN)) {
                 outputList.add(book);
             }
         }
-
         if (outputList.isEmpty()) {
             System.out.println("There is no book found.");
         }
@@ -108,6 +105,7 @@ public class BookRepository implements Search {
             if (fullName.startsWith(author) || lastName.startsWith(author)) {
                 booklist.add(book);
             }
+            System.out.println("Th");
         }
         return booklist;
     }
@@ -120,6 +118,7 @@ public class BookRepository implements Search {
             System.out.println("Invalid entry");
         }
     }
+<<<<<<< HEAD
     public Book getBookOnIsbn (String isbn){
         Book book1 = null;
         for (Book book : books) {
@@ -129,4 +128,32 @@ public class BookRepository implements Search {
         }
         return book1;
     }
+=======
+
+    public Book getBookByISBN(String ISBN ){
+        for (Book book : books) {
+            String isbn = book.getIsbn();
+
+            if (isbn.equals(ISBN)){
+                return book;
+            }
+        }
+        System.out.println("This book does not exists.");
+        return null;
+    }
+
+    @Override
+    public boolean validateISBNExists(String ISBN) {
+        if (getIsbnNumbers().contains(ISBN)){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean validateINSSExists(String INSS) {
+        return false;
+    }
+
+>>>>>>> 9090def22b9eb3741b76d9b8bbb2fe693278345b
 }

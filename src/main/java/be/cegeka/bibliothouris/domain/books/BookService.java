@@ -8,15 +8,20 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
 /**
  * Created by jensde on 25/01/2017.
  */
 @Named
+<<<<<<< HEAD
 public class BookService implements Validation {
     private MemberRepository memberRepository;
+=======
+public class BookService  {
+>>>>>>> 9090def22b9eb3741b76d9b8bbb2fe693278345b
     public List<LendABook> lendedBooks;
 
-    public BookService(){
+    public BookService() {
         this.lendedBooks = new ArrayList<>();
     }
 
@@ -33,9 +38,15 @@ public class BookService implements Validation {
     public List<Book> getAllBooks() {
         return bookRepository.getAllBooks();
     }
+    public Book getBookByISBN(String ISBN){
+        return bookRepository.getBookByISBN(ISBN);
+    }
 
     public String searchByISBN(String ISBN) {
         return bookRepository.searchByISBN(ISBN);
+    }
+    public List<String> getIsbnNumbers(){
+        return bookRepository.getIsbnNumbers();
     }
 
     public String searchByTitle(String title) {
@@ -50,20 +61,13 @@ public class BookService implements Validation {
         bookRepository.enhancedBook(isbn, title, lastName, firstName);
     }
 
-  /*  public LendABook lendABook(String isbn, String inss) {
+    public void lendABook(String isbn, String inss) {
 
-
-    }*/
-
-    @Override
-    public boolean validateISBNExists(String ISBN) {
-        List<String> isbnList = bookRepository.getIsbnNumbers();
-        if (isbnList.contains(ISBN)){
-            return true;
-        }
-        return false;
     }
 
+
+
+<<<<<<< HEAD
     @Override
     public boolean validateINSSExists(String INSS) {
         return false;
@@ -88,4 +92,6 @@ public class BookService implements Validation {
     }
 
 
+=======
+>>>>>>> 9090def22b9eb3741b76d9b8bbb2fe693278345b
 }
