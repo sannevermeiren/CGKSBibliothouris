@@ -21,7 +21,7 @@ public class MemberController {
     @RequestMapping(method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Member> getUsers() {
+    List<Member> getMembers() {
         return memberService.getAllMembers();
     }
 
@@ -38,6 +38,14 @@ public class MemberController {
 
     {
         memberService.addMember(inss, lastName, firstName,street, number, postalCode, city);
+    }
+
+    @RequestMapping(path="/memberDetails", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String getAllDetails()
+    {
+        return memberService.getAllMemberDetails();
     }
 
 }

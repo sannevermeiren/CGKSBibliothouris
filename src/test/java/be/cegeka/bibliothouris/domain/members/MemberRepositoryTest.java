@@ -30,6 +30,12 @@ public class MemberRepositoryTest {
         Assertions.assertThat(memberRepository.getAllMembers()).isEqualTo(testList);
     }
 
+    @Test
+    public void getAllDetailsTest() throws Exception {
+        memberRepository.addMember(member1);
+        Assertions.assertThat(memberRepository.getAllMemberDetails()).isEqualTo("First name: "+member1.getFirstName() + " Last name: " + member1.getLastName() + " City: " + member1.getCity() + " Number: "+ member1.getInss());
 
 
+
+    }
 }
