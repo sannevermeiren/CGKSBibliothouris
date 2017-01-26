@@ -21,6 +21,10 @@ public class BookRepository implements Search {
         return books;
     }
 
+    public List<String> getIsbnNumbers() {
+        return isbnNumbers;
+    }
+
     public void addBook(Book book) {
 
         books.add(book);

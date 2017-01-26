@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by jensde on 25/01/2017.
  */
 @Named
-public class BookService {
+public class BookService implements Validation {
     public List<LendABook> lendedBooks;
 
     public BookService(){
@@ -45,10 +45,22 @@ public class BookService {
         bookRepository.enhancedBook(isbn, title, lastName, firstName);
     }
 
-    public LendABook lendABook(String isbn, String inss) {
-        LendABook len = new LendABook(inss, isbn);
-        lendedBooks.add(len);
-        return len;
+  /*  public LendABook lendABook(String isbn, String inss) {
+
+
+    }*/
+
+    @Override
+    public boolean validateISBNExists(String ISBN) {
+        List<String> isbnList = bookRepository.getIsbnNumbers();
+        if (isbnList.contains(ISBN)){
+            return true;
+        }
+        return false;
     }
 
+    @Override
+    public boolean validateINSSExists(String INSS) {
+        return false;
+    }
 }

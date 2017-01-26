@@ -9,12 +9,18 @@ public class Book {
     private final String title;
     private String authorLastName;
     private String authorFirstName;
+    private boolean lended;
 
     public Book(String isbn, String title, String authorLastName, String authorFirstName) {
         this.isbn = isbn;
         this.title = title;
         this.authorLastName = authorLastName;
         this.authorFirstName = authorFirstName;
+        this.lended = false;
+    }
+
+    public boolean isLended() {
+        return lended;
     }
 
     public String getIsbn() {
@@ -29,14 +35,16 @@ public class Book {
         return authorFirstName;
     }
 
-    public String getAuthorLastName() { return authorLastName; }
+    public String getAuthorLastName() {
+        return authorLastName;
+    }
 
-    public String getDetails(){
+    public String getDetails() {
         StringBuilder sb = new StringBuilder("bookDetails\r\n");
 
-        sb.append("isbn: " + isbn+System.lineSeparator());
-        sb.append("title: " + title+System.lineSeparator());
-        sb.append("author first name: " + authorFirstName+"\r\n");
+        sb.append("isbn: " + isbn + System.lineSeparator());
+        sb.append("title: " + title + System.lineSeparator());
+        sb.append("author first name: " + authorFirstName + "\r\n");
         sb.append("author last name: " + authorLastName);
         
         return sb.toString();
