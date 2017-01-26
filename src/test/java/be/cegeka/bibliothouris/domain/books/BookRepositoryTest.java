@@ -90,7 +90,6 @@ public class BookRepositoryTest {
         bookRepos.addBook(b3);
         Assertions.assertThat(bookRepos.searchByTitle("blablabla")).isEqualTo("");
     }
-<<<<<<< HEAD
 
     @Test
     public void testSearchAuthor() {
@@ -130,7 +129,6 @@ public class BookRepositoryTest {
 
     }
 
-=======
     @Test
     public void testEnhancedBook(){
         bookRepos.enhancedBook("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand");
@@ -138,5 +136,4 @@ public class BookRepositoryTest {
         testList.add(new Book("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand"));
         Assertions.assertThat(bookRepos.getAllBooks()).isEqualTo(testList);
     }
->>>>>>> a29c926bf5cd7e1baa13e95d07aacbb72c3096cc
 }
