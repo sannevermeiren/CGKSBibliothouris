@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by jensde on 25/01/2017.
  */
 @Named
-public class BookService implements Validation {
+public class BookService {
     private MemberRepository memberRepository;
 
     public List<LendABook> lendedBooks;
@@ -64,10 +64,7 @@ public class BookService implements Validation {
 
     }
 
-    @Override
-    public boolean validateINSSExists(String INSS) {
-        return false;
-    }
+
 
     public String getLendingMember(String isbn) {
         String lendedMember = "";
