@@ -13,12 +13,9 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by jensde on 25/01/2017.
  */
 @Named
-<<<<<<< HEAD
 public class BookService implements Validation {
     private MemberRepository memberRepository;
-=======
-public class BookService  {
->>>>>>> 9090def22b9eb3741b76d9b8bbb2fe693278345b
+
     public List<LendABook> lendedBooks;
 
     public BookService() {
@@ -38,14 +35,16 @@ public class BookService  {
     public List<Book> getAllBooks() {
         return bookRepository.getAllBooks();
     }
-    public Book getBookByISBN(String ISBN){
+
+    public Book getBookByISBN(String ISBN) {
         return bookRepository.getBookByISBN(ISBN);
     }
 
     public String searchByISBN(String ISBN) {
         return bookRepository.searchByISBN(ISBN);
     }
-    public List<String> getIsbnNumbers(){
+
+    public List<String> getIsbnNumbers() {
         return bookRepository.getIsbnNumbers();
     }
 
@@ -65,21 +64,19 @@ public class BookService  {
 
     }
 
-
-
-<<<<<<< HEAD
     @Override
     public boolean validateINSSExists(String INSS) {
         return false;
     }
-    public String getLendingMember (String isbn){
-        String lendedMember ="";
-        Book book1=null;
+
+    public String getLendingMember(String isbn) {
+        String lendedMember = "";
+        Book book1 = null;
         for (LendABook lendedBook : lendedBooks) {
-            if(lendedBook.getIsbn().equals(isbn)){
+            if (lendedBook.getIsbn().equals(isbn)) {
                 String inss = lendedBook.getInss();
                 Member member = memberRepository.getMember("inss");
-                 book1 = bookRepository.getBookOnIsbn("isbn");
+                book1 = bookRepository.getBookByISBN("isbn");
 
                 String lastName = member.getLastName();
                 String firstName = member.getFirstName();
@@ -92,6 +89,4 @@ public class BookService  {
     }
 
 
-=======
->>>>>>> 9090def22b9eb3741b76d9b8bbb2fe693278345b
 }
