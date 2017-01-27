@@ -31,7 +31,6 @@ public class BookServiceTest {
     @Mock
     private MemberRepository memberRepository;
 
-
     Book book1 = new Book("886-53-798-6928-1", "lord of the rings", "jrr", "tolkien");
     Book book2 = new Book("978-90-274-3964-2", "ilias", "homeros", "unknown");
     Book book3 = new Book("491-87-192-6758-3", "titel", "auteursnaam", "auteursvoornaam");
@@ -53,12 +52,13 @@ public class BookServiceTest {
     }
 
     @Test
-    public void bookExists(){
+    public void bookExists() {
         when(bookRepository.validateISBNExists("886-53-798-6928-1")).thenReturn(true);
         assertThat(bookRepository.validateISBNExists("886-53-798-6928-1")).isTrue();
     }
 
 
+<<<<<<< HEAD
 
     @Test
     public void lendABookTest() {
@@ -99,4 +99,6 @@ public class BookServiceTest {
 
         bookService.lendABook("886-53-798-6928-1", "9887");
     }
+=======
+>>>>>>> 5fbddda0922560b6214cc0f42f3981dfb112519f
 }

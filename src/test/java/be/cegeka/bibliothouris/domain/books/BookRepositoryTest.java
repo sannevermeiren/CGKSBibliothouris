@@ -1,5 +1,7 @@
 package be.cegeka.bibliothouris.domain.books;
 
+import be.cegeka.bibliothouris.domain.members.Member;
+import be.cegeka.bibliothouris.domain.members.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,12 +15,18 @@ import static org.junit.Assert.*;
  * Created by elisel on 25/01/2017.
  */
 public class BookRepositoryTest {
+    BookService bookService = new BookService();
     BookRepository bookRepos = new BookRepository();
+    MemberRepository memberRepos = new MemberRepository();
     Book b1 = new Book("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand");
     Book b2 = new Book("978-90-274-3964-2", "Een ander boek", "van iemand anders", "voornaamEenAnder");
     Book b3 = new Book("491-87-192-6758-3", "Nog een boek", "nog iemand anders", "voornaamEenAnder");
     Book b4 = new Book("886-53-798-7125-3", "Een boektest", "van een auteur", "voornaamEenAnder");
     Book b5 = new Book("769-42-815-7432-4", "BoekjesBoekjes", "iemandiemand", "voornaamiemand");
+
+    Member member1 = new Member("556", "Elize", "Lodewycks", "eenStraat", 12, 9999, "verWeg");
+    Member member2 = new Member("459", "Jens", "Devriendt", "eenAndereStraat", 56, 1569, "ergens");
+    Member member3 = new Member("59", "Kevin", "familienaam", "eenDerdeStraat", 45, 789, "ergensAnders");
 
     @Test
     public void listAllBookTest()
@@ -51,7 +59,7 @@ public class BookRepositoryTest {
                 "isbn: 886-53-798-6928-1\r\n" +
                 "title: Een boek\r\n" +
                 "author first name: voornaamiemand\r\n" +
-                "author last name: iemand\r\nbookDetails\r\nisbn: 886-53-798-7125-3\r\ntitle: Een boektest\r\nauthor first name: voornaamEenAnder\r\nauthor last name: van een auteur\r\n");
+                "author last name: iemand\r\nbookDetails\r\nisbn: 886-53-798-7125-3\r\ntitle: Een boektest\r\nauthor first name: voornaamEenAnder\r\nauthor last name: van een auteur lended: true\r\n");
     }
 
     @Test
@@ -135,5 +143,43 @@ public class BookRepositoryTest {
         List<Book> testList = new ArrayList<>();
         testList.add(new Book("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand"));
         Assertions.assertThat(bookRepos.getAllBooks()).isEqualTo(testList);
+    }
+
+    @Test
+    public void lendABookTest() {
+
+        bookRepos.addBook(b1);
+        bookRepos.addBook(b2);
+        bookRepos.addBook(b3);
+        memberRepos.addMember(member1);
+        memberRepos.addMember(member2);
+        memberRepos.addMember(member3);
+
+       bookService.lendABook("886-53-798-6928-1", "556");
+    }
+
+    @Test
+    public void lendABookWhenBookNotExists() {
+
+        bookRepos.addBook(b1);
+        bookRepos.addBook(b2);
+        bookRepos.addBook(b3);
+        memberRepos.addMember(member1);
+        memberRepos.addMember(member2);
+        memberRepos.addMember(member3);
+
+        bookService.lendABook("987", "556");
+    }
+
+    @Test
+    public void lendABookWhenMemberDoesNotExists() {
+        bookRepos.addBook(b1);
+        bookRepos.addBook(b2);
+        bookRepos.addBook(b3);
+        memberRepos.addMember(member1);
+        memberRepos.addMember(member2);
+        memberRepos.addMember(member3);
+
+        bookService.lendABook("886-53-798-6928-1", "9887");
     }
 }

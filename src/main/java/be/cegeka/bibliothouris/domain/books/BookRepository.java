@@ -122,7 +122,6 @@ public class BookRepository implements Search, Validation {
     public Book getBookByISBN(String ISBN ){
         for (Book book : books) {
             String isbn = book.getIsbn();
-
             if (isbn.equals(ISBN)){
                 return book;
             }
@@ -143,5 +142,6 @@ public class BookRepository implements Search, Validation {
     public boolean validateINSSExists(String INSS) {
         return false;
     }
+
 
 }
