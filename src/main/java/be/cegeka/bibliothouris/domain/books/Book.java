@@ -89,12 +89,9 @@ public class Book {
         result = 31 * result + (lended ? 1 : 0);
         return result;
     }
-<<<<<<< HEAD
-}
-=======
 
     public void setLended(boolean lended) {
         this.lended = lended;
     }
 }
->>>>>>> 9090def22b9eb3741b76d9b8bbb2fe693278345b
+
