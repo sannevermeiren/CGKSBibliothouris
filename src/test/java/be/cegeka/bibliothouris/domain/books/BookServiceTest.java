@@ -99,5 +99,4 @@ public class BookServiceTest {
 
         bookService.lendABook("886-53-798-6928-1", "9887");
     }
-
 }

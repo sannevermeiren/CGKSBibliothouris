@@ -52,7 +52,7 @@ public class Book {
         sb.append("isbn: " + isbn + System.lineSeparator());
         sb.append("title: " + title + System.lineSeparator());
         sb.append("author first name: " + authorFirstName + "\r\n");
-        sb.append("author last name: " + authorLastName);
+        sb.append("author last name: " + authorLastName+"\r\n");
         if (lended = true) {
             sb.append("book lended: " + lended + lenderInfo);
 
