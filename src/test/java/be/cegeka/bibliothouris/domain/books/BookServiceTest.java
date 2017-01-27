@@ -58,8 +58,6 @@ public class BookServiceTest {
     }
 
 
-<<<<<<< HEAD
-
     @Test
     public void lendABookTest() {
 
@@ -99,6 +97,4 @@ public class BookServiceTest {
 
         bookService.lendABook("886-53-798-6928-1", "9887");
     }
-=======
->>>>>>> 5fbddda0922560b6214cc0f42f3981dfb112519f
 }
