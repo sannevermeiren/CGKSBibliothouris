@@ -70,7 +70,11 @@ public class BookService {
             System.out.println("This book does not exists.");
         }
 
+<<<<<<< HEAD
         }
+=======
+    }
+>>>>>>> 050167ea0d637fefc25d84fb656b33d9427477b2
 
     public String getLendingMember(String isbn) {
         String lendedMember = "";
