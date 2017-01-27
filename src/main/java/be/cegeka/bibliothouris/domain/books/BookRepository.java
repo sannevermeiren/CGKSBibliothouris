@@ -118,17 +118,6 @@ public class BookRepository implements Search, Validation {
             System.out.println("Invalid entry");
         }
     }
-<<<<<<< HEAD
-    public Book getBookOnIsbn (String isbn){
-        Book book1 = null;
-        for (Book book : books) {
-            if (book.getIsbn().equals(isbn)){
-                 book1 = book;
-            }
-        }
-        return book1;
-    }
-=======
 
     public Book getBookByISBN(String ISBN ){
         for (Book book : books) {
@@ -155,5 +144,4 @@ public class BookRepository implements Search, Validation {
         return false;
     }
 
->>>>>>> 9090def22b9eb3741b76d9b8bbb2fe693278345b
 }
