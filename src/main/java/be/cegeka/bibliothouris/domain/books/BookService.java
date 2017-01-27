@@ -61,10 +61,16 @@ public class BookService {
     }
 
     public void lendABook(String isbn, String inss) {
+        if (bookRepository.validateISBNExists(isbn)){
+            LendABook len = new LendABook(isbn,inss);
+            lendedBooks.add(len);
+            Book book = getBookByISBN(isbn);
+            book.setLended(true);
+        } else{
+            System.out.println("This book does not exists.");
+        }
 
-    }
-
-
+        }
 
     public String getLendingMember(String isbn) {
         String lendedMember = "";

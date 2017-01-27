@@ -31,7 +31,6 @@ public class BookServiceTest {
     @Mock
     private MemberRepository memberRepository;
 
-
     Book book1 = new Book("886-53-798-6928-1", "lord of the rings", "jrr", "tolkien");
     Book book2 = new Book("978-90-274-3964-2", "ilias", "homeros", "unknown");
     Book book3 = new Book("491-87-192-6758-3", "titel", "auteursnaam", "auteursvoornaam");
@@ -53,51 +52,10 @@ public class BookServiceTest {
     }
 
     @Test
-    public void bookExists(){
+    public void bookExists() {
         when(bookRepository.validateISBNExists("886-53-798-6928-1")).thenReturn(true);
         assertThat(bookRepository.validateISBNExists("886-53-798-6928-1")).isTrue();
     }
 
-
-
-    @Test
-    public void lendABookTest() {
-
-        bookRepository.addBook(book1);
-        bookRepository.addBook(book2);
-        bookRepository.addBook(book3);
-        memberRepository.addMember(member1);
-        memberRepository.addMember(member2);
-        memberRepository.addMember(member3);
-
-        bookService.lendABook("886-53-798-6928-1", "556");
-    }
-
-    @Test
-    public void lendABookWhenBookNotExists() {
-
-        bookRepository.addBook(book1);
-        bookRepository.addBook(book2);
-        bookRepository.addBook(book3);
-        memberRepository.addMember(member1);
-        memberRepository.addMember(member2);
-        memberRepository.addMember(member3);
-
-        bookService.lendABook("987", "556");
-    }
-
-    @Test
-    public void lendABookWhenMemberDoesNotExists() {
-
-        bookRepository.addBook(book1);
-        bookRepository.addBook(book2);
-        bookRepository.addBook(book3);
-
-        memberRepository.addMember(member1);
-        memberRepository.addMember(member2);
-        memberRepository.addMember(member3);
-
-        bookService.lendABook("886-53-798-6928-1", "9887");
-    }
 
 }
