@@ -13,7 +13,6 @@ import java.util.List;
 public class BookRepository {
     private List<Book> books = new ArrayList<>();
     private List<String> isbnNumbers = new ArrayList<>();
-    public List<Rental> lendedBooks;
 
     @Inject
     private MemberRepository memberRepository;
@@ -135,16 +134,7 @@ public class BookRepository {
         return false;
     }
 
-        public void lendABook(String isbn, String inss) {
-        if (validateISBNExists(isbn)) {
-            Rental len = new Rental(isbn, inss);
-            lendedBooks.add(len);
-            Book book = getBookByISBN(isbn);
-            book.setLended(true);
-        } else {
-            System.out.println("This book does not exists.");
-        }
-    }
+
     public String getEnhancedDetails(){
         return book.getDetails();
     }

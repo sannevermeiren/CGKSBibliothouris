@@ -1,30 +1,21 @@
 package be.cegeka.bibliothouris.domain.books;
 
-import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
+import be.cegeka.bibliothouris.domain.rentals.RentalRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jensde on 25/01/2017.
- */
 @Named
 public class BookService {
-
-
-
-
-
 
     @Inject
     private MemberRepository memberRepository;
     @Inject
     private BookRepository bookRepository;
     @Inject
-    private Book book;
+    private RentalRepository rentalRepository;
     //   private final AtomicLong counter = new AtomicLong();
 
     public void addBook(String isbn, String title, String authorFirstName, String authorLastName) {
@@ -51,22 +42,14 @@ public class BookService {
         return bookRepository.searchByTitle(title);
     }
 
-
     public String searchByAuthor (String author) {
         return bookRepository.searchByAuthor(author);
     }
 
-    public String getDetails(String title, String authorFirstName, String authorLastName,Boolean lended){
-        return bookRepository.getEnhancedDetails();}
+    public String getDetails(String title, String authorFirstName, String authorLastName){
+        return bookRepository.getDetails();}
 
     public void enhancedBook(String isbn, String title, String lastName, String firstName) {
         bookRepository.enhancedBook(isbn, title, lastName, firstName);
-    }
-
-   public void getlendABook (String isbn, String inss) {
-       bookRepository.lendABook(isbn, inss);
-
-   }
-   public String getLendingMember (String isbn){return bookRepository.getLendingMember(isbn);
     }
 }
