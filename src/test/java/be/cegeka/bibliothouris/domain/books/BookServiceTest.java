@@ -2,6 +2,7 @@ package be.cegeka.bibliothouris.domain.books;
 
 import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
+import be.cegeka.bibliothouris.domain.rentals.RentalService;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -22,6 +23,8 @@ public class BookServiceTest {
 
     @InjectMocks
     private BookService bookService;
+    @InjectMocks
+    private RentalService rentalService;
 
     @Mock
     private BookRepository bookRepository;
@@ -54,10 +57,6 @@ public class BookServiceTest {
         assertThat(bookRepository.validateISBNExists("886-53-798-6928-1")).isTrue();
     }
 
-<<<<<<< HEAD
-=======
-
-
     @Test
     public void lendABookTest() {
 
@@ -68,7 +67,7 @@ public class BookServiceTest {
         memberRepository.addMember(member2);
         memberRepository.addMember(member3);
 
-        bookRepository.lendABook("886-53-798-6928-1", "556");
+        rentalService.lendABook("886-53-798-6928-1", "556");
     }
 
     @Test
@@ -80,6 +79,6 @@ public class BookServiceTest {
         memberRepository.addMember(member1);
         memberRepository.addMember(member2);
         memberRepository.addMember(member3);
->>>>>>> df1521645aec6c82822ecf07d6ba3bbf261360de
 
+    }
 }
