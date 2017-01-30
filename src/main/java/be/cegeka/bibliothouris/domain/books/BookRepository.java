@@ -2,6 +2,7 @@ package be.cegeka.bibliothouris.domain.books;
 
 import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
+import be.cegeka.bibliothouris.domain.rentals.Rental;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -12,7 +13,7 @@ import java.util.List;
 public class BookRepository {
     private List<Book> books = new ArrayList<>();
     private List<String> isbnNumbers = new ArrayList<>();
-    public List<LendABook> lendedBooks;
+    public List<Rental> lendedBooks;
 
     @Inject
     private MemberRepository memberRepository;
@@ -144,7 +145,7 @@ public class BookRepository {
 
     public void lendABook(String isbn, String inss) {
         if (validateISBNExists(isbn)) {
-            LendABook len = new LendABook(isbn, inss);
+            Rental len = new Rental(isbn, inss);
             lendedBooks.add(len);
             Book book = getBookByISBN(isbn);
             book.setLended(true);
@@ -159,7 +160,7 @@ public class BookRepository {
     public String getLendingMember(String isbn) {
         String lendedMember = "";
         Book book1 = null;
-        for (LendABook lendedBook : lendedBooks) {
+        for (Rental lendedBook : lendedBooks) {
             if (lendedBook.getIsbn().equals(isbn)) {
                 String inss = lendedBook.getInss();
                 Member member = memberRepository.getMember("inss");
