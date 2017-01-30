@@ -7,6 +7,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collector;
+import java.util.stream.Stream;
 
 @Named
 public class BookRepository {
@@ -51,16 +54,12 @@ public class BookRepository {
     public List<Book> getBookListISBN(String ISBN) {
 
         ArrayList<Book> outputList = new ArrayList<>();
-        for (Book book : books) {
-            String isbnBook = book.getIsbn();
-            if (isbnBook.startsWith(ISBN)) {
-                outputList.add(book);
-            }
-        }
-        if (outputList.isEmpty()) {
-            System.out.println("There is no book found.");
-        }
-        return outputList;
+        Stream<Book> bookStream = outputList.stream();
+        Pattern input = Pattern.compile("");
+        List<Book> result = bookStream.filter(book->input.matcher(book.getIsbn()).matches()).Collect(Collector.toList());
+        return result;
+
+
     }
 
     private List<Book> getbookListTitle(String title) {
