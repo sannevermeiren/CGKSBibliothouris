@@ -1,13 +1,12 @@
 package be.cegeka.bibliothouris.domain.books;
 
-<<<<<<< HEAD
+
 import be.cegeka.bibliothouris.domain.members.Member;
 import org.apache.commons.lang3.StringUtils;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 
 import javax.inject.Inject;
-=======
->>>>>>> 77e889d49f634ff0d7598cdfd7b3043585e91779
+
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.List;
  * Created by jensde on 25/01/2017.
  */
 @Named
-public class BookRepository  {
+public class BookRepository {
     private List<Book> books = new ArrayList<>();
     private List<String> isbnNumbers = new ArrayList<>();
     public List<LendABook> lendedBooks;
@@ -25,6 +24,7 @@ public class BookRepository  {
     public BookRepository() {
         this.lendedBooks = new ArrayList<>();
     }
+
     public List<Book> getAllBooks() {
         return books;
     }
@@ -81,7 +81,6 @@ public class BookRepository  {
     }
 
 
-
     public List<Book> getbookListAuthor(String author) {
         List<Book> booklist = new ArrayList<>();
         for (Book book : books) {
@@ -96,7 +95,6 @@ public class BookRepository  {
     }
 
 
-
     public String searchByISBN(String ISBN) {
         String output = "";
         List<Book> booklist = getBookListISBN(ISBN);
@@ -107,14 +105,19 @@ public class BookRepository  {
         return output;
     }
 
-<<<<<<< HEAD
     public Book getBookByISBN(String ISBN) {
-        for (Book book : books) {
+        Book book = null;
+
+        for (Book book1 : books) {
             String isbn = book.getIsbn();
             if (isbn.equals(ISBN)) {
-                return book;
+                book = book1;
             }
-=======
+
+        }
+        return book;
+    }
+
 
     public String searchByTitle(String title) {
         String output = "";
@@ -122,7 +125,7 @@ public class BookRepository  {
         for (Book book : booklist) {
             String det = book.getDetails();
             output += det + System.lineSeparator();
->>>>>>> 77e889d49f634ff0d7598cdfd7b3043585e91779
+
         }
         return output;
     }
@@ -149,7 +152,6 @@ public class BookRepository  {
     }
 
 
-<<<<<<< HEAD
     public void lendABook(String isbn, String inss) {
         if (validateISBNExists(isbn)) {
             LendABook len = new LendABook(isbn, inss);
@@ -160,8 +162,10 @@ public class BookRepository  {
             System.out.println("This book does not exists.");
         }
     }
+
     @Inject
     private MemberRepository memberRepository;
+
     public String getLendingMember(String isbn) {
         String lendedMember = "";
         Book book1 = null;
@@ -182,25 +186,4 @@ public class BookRepository  {
     }
 
 
-=======
-
-
-
-    public Book getBookByISBN(String ISBN ){
-        for (Book book : books) {
-            String isbn = book.getIsbn();
-            if (isbn.equals(ISBN)){
-                return book;
-            }
-        }
-        System.out.println("This book does not exists.");
-        return null;
-    }
-
-
-
-
-
-
->>>>>>> 77e889d49f634ff0d7598cdfd7b3043585e91779
 }

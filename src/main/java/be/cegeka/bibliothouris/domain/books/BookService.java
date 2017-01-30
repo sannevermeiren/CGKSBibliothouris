@@ -63,11 +63,8 @@ public class BookService {
    public void getlendABook (String isbn, String inss) {
        bookRepository.lendABook(isbn, inss);
 
-<<<<<<< HEAD
    }
    public String getLendingMember (String isbn){return bookRepository.getLendingMember(isbn);
     }
-=======
 
->>>>>>> 77e889d49f634ff0d7598cdfd7b3043585e91779
 }
