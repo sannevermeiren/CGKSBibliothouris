@@ -105,7 +105,7 @@ public class BookRepository implements Search, Validation {
             if (fullName.startsWith(author) || lastName.startsWith(author)) {
                 booklist.add(book);
             }
-            System.out.println("There is no book found");
+            System.out.println("There is no book found.");
         }
         return booklist;
     }
