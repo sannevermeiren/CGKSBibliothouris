@@ -4,6 +4,7 @@ import be.cegeka.bibliothouris.domain.books.Author;
 import be.cegeka.bibliothouris.domain.books.Book;
 import be.cegeka.bibliothouris.domain.books.BookService;
 import com.sun.org.apache.regexp.internal.RE;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -72,5 +73,21 @@ public class LibraryController {
     String searchByAuthor(@RequestParam(value = "author", required = true) String author){
         return bookService.searchByAuthor(author);
     }
+    @RequestMapping(path ="/getDetails", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String getDetails(@RequestParam(value = "title:",required = true)String title,
+                      @RequestParam(value ="author first name:", required = true)String authorFirstName,
+                      @RequestParam(value = "author last name: ", required = true)String authorLastName,
+                      @RequestParam(value = "lended", required = true)Boolean lended){
+        return bookService.getDetails(title,authorFirstName,authorLastName,lended);
+    }
 }
 
+/*"isbn: " + isbn + System.lineSeparator());
+        sb.append("title: " + title + System.lineSeparator());
+        sb.append("author first name: " + authorFirstName + "\r\n");
+        sb.append("author last name: " + authorLastName+"\r\n");
+        if (lended = true) {
+            sb.append("book lended: " + lended + lenderInfo);
+*/
