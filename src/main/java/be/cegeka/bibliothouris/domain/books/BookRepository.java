@@ -16,6 +16,8 @@ public class BookRepository {
 
     @Inject
     private MemberRepository memberRepository;
+    @Inject
+    private Book book;
 
     public BookRepository() {
         this.lendedBooks = new ArrayList<>();
@@ -149,6 +151,9 @@ public class BookRepository {
         } else {
             System.out.println("This book does not exists.");
         }
+    }
+    public String getEnhancedDetails(){
+        return book.getDetails();
     }
 
     public String getLendingMember(String isbn) {

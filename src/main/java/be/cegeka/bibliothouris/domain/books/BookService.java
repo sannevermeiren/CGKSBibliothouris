@@ -21,7 +21,9 @@ public class BookService {
 
     @Inject
     private MemberRepository memberRepository;
+    @Inject
     private BookRepository bookRepository;
+    @Inject
     private Book book;
     //   private final AtomicLong counter = new AtomicLong();
 
@@ -54,7 +56,8 @@ public class BookService {
         return bookRepository.searchByAuthor(author);
     }
 
-    public String getDetails(String title, String authorFirstName, String authorLastName,Boolean lended){return book.getDetails();}
+    public String getDetails(String title, String authorFirstName, String authorLastName,Boolean lended){
+        return bookRepository.getEnhancedDetails();}
 
     public void enhancedBook(String isbn, String title, String lastName, String firstName) {
         bookRepository.enhancedBook(isbn, title, lastName, firstName);
@@ -66,5 +69,4 @@ public class BookService {
    }
    public String getLendingMember (String isbn){return bookRepository.getLendingMember(isbn);
     }
-
 }
