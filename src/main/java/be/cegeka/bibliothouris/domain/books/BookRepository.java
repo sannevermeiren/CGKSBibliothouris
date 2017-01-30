@@ -9,16 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Named
-public class BookRepository implements FindBook {
+public class BookRepository {
     private List<Book> books = new ArrayList<>();
     private List<String> isbnNumbers = new ArrayList<>();
-<<<<<<< HEAD
 
 
-    public List<LendABook> lendedBooks;
     public List<Rental> lendedBooks;
-=======
->>>>>>> 2c69717fa8f7acaad90585370c3d4455eb64e730
 
     @Inject
     private MemberRepository memberRepository;
@@ -37,9 +33,7 @@ public class BookRepository implements FindBook {
         if (validateISBNExists(book.getIsbn())) {
             books.add(book);
             isbnNumbers.add(book.getIsbn());
-        }
-        else
-        {
+        } else {
             System.out.println("Book already exists");
         }
     }
@@ -52,7 +46,6 @@ public class BookRepository implements FindBook {
             System.out.println("Invalid entry");
         }
     }
-
 
 
     public List<Book> getBookListISBN(String ISBN) {
@@ -148,22 +141,7 @@ public class BookRepository implements FindBook {
         return false;
     }
 
-<<<<<<< HEAD
-        public void lendABook(String isbn, String inss) {
-        if (validateISBNExists(isbn)) {
-            Rental len = new Rental(isbn, inss);
-            lendedBooks.add(len);
-            Book book = getBookByISBN(isbn);
-            book.setLended(true);
-        } else {
-            System.out.println("This book does not exists.");
+        public String getDetails () {
+            return book.getDetails();
         }
     }
-    public String getDetails(){
-=======
-
-    public String getEnhancedDetails(){
->>>>>>> 2c69717fa8f7acaad90585370c3d4455eb64e730
-        return book.getDetails();
-    }
-}
