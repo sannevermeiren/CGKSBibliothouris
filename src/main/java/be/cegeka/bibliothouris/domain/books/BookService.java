@@ -29,7 +29,6 @@ public class BookService {
     public String searchByTitle(String title){
         return bookRepository.searchByTitle(title);
     }
-<<<<<<< HEAD
     public String searchByAuthor(String author){
         return bookRepository.searchByAuthor(author);
     }
@@ -39,8 +38,6 @@ public class BookService {
         lendedBooks.add(len);
         return len;
     }
-=======
     public void enhancedBook (String isbn, String title , String lastName, String firstName){bookRepository.enhancedBook(isbn,title, lastName,firstName);}
->>>>>>> a29c926bf5cd7e1baa13e95d07aacbb72c3096cc
 
 }
