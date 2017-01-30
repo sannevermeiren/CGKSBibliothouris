@@ -1,6 +1,5 @@
 package be.cegeka.bibliothouris.domain.books;
 
-import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 import be.cegeka.bibliothouris.domain.rentals.Rental;
 
@@ -10,15 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Named
-public class BookRepository {
+public class BookRepository implements FindBook {
     private List<Book> books = new ArrayList<>();
     private List<String> isbnNumbers = new ArrayList<>();
-<<<<<<< HEAD
+
 
     public List<LendABook> lendedBooks;
-=======
     public List<Rental> lendedBooks;
->>>>>>> ee8e115dd77f70c04f99b44ab20dfc304908f40b
 
     @Inject
     private MemberRepository memberRepository;
@@ -53,9 +50,11 @@ public class BookRepository {
         }
     }
 
-    public List<Book> getBookListISBN(String ISBN) {
-        List<Book> outputList = new ArrayList<>();
 
+
+    public List<Book> getBookListISBN(String ISBN) {
+
+        ArrayList<Book> outputList = new ArrayList<>();
         for (Book book : books) {
             String isbnBook = book.getIsbn();
             if (isbnBook.startsWith(ISBN)) {
@@ -156,7 +155,7 @@ public class BookRepository {
             System.out.println("This book does not exists.");
         }
     }
-    public String getEnhancedDetails(){
+    public String getDetails(){
         return book.getDetails();
     }
 }
