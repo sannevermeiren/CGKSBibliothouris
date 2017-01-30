@@ -40,7 +40,7 @@ public class BookTest {
 
     @Test
     public void getDetailsTest() {
-        Assertions.assertThat(book.getDetails()).isEqualTo("bookDetails" +"\r\n" + "isbn: " + book.getIsbn() + "\r\n" + "title: " + book.getTitle() + "\r\n" + "author first name: " + book.getAuthorFirstName() + "\r\n"+ "author last name: " +book.getAuthorLastName());
+        Assertions.assertThat(book.getDetails()).isEqualTo("bookDetails" +"\r\n" + "isbn: " + book.getIsbn() + "\r\n" + "title: " + book.getTitle() + "\r\n" + "author first name: " + book.getAuthorFirstName() + "\r\n"+ "author last name: " +book.getAuthorLastName()+"\r\n"+ "book lended: "+book.isLended());
     }
 
 }

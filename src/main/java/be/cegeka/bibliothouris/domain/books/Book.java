@@ -9,12 +9,25 @@ public class Book {
     private final String title;
     private String authorLastName;
     private String authorFirstName;
+    private boolean lended;
+    private String lenderInfo;
 
     public Book(String isbn, String title, String authorLastName, String authorFirstName) {
         this.isbn = isbn;
         this.title = title;
         this.authorLastName = authorLastName;
         this.authorFirstName = authorFirstName;
+        this.lended = false;
+        this.lenderInfo ="";
+    }
+    public void setLenderInfo (String info){
+    lenderInfo = info;
+    }
+
+
+
+    public boolean isLended() {
+        return lended;
     }
 
     public String getIsbn() {
@@ -29,17 +42,27 @@ public class Book {
         return authorFirstName;
     }
 
-    public String getAuthorLastName() { return authorLastName; }
+    public String getAuthorLastName() {
+        return authorLastName;
+    }
 
-    public String getDetails(){
+    public String getDetails() {
         StringBuilder sb = new StringBuilder("bookDetails\r\n");
 
-        sb.append("isbn: " + isbn+System.lineSeparator());
-        sb.append("title: " + title+System.lineSeparator());
-        sb.append("author first name: " + authorFirstName+"\r\n");
-        sb.append("author last name: " + authorLastName);
+        sb.append("isbn: " + isbn + System.lineSeparator());
+        sb.append("title: " + title + System.lineSeparator());
+        sb.append("author first name: " + authorFirstName + "\r\n");
+        sb.append("author last name: " + authorLastName+"\r\n");
+        if (lended = true) {
+            sb.append("book lended: " + lended + lenderInfo);
 
-        return sb.toString();
+            return sb.toString();
+        }
+        else {
+            sb.append("book is not lended: "+ lended);
+            return sb.toString();
+        }
+
     }
 
     @Override
@@ -49,18 +72,25 @@ public class Book {
 
         Book book = (Book) o;
 
-        if (!isbn.equals(book.isbn)) return false;
-        if (!title.equals(book.title)) return false;
-        if (!authorLastName.equals(book.authorLastName)) return false;
-        return authorFirstName.equals(book.authorFirstName);
+        if (lended != book.lended) return false;
+        if (isbn != null ? !isbn.equals(book.isbn) : book.isbn != null) return false;
+        if (title != null ? !title.equals(book.title) : book.title != null) return false;
+        if (authorLastName != null ? !authorLastName.equals(book.authorLastName) : book.authorLastName != null)
+            return false;
+        return authorFirstName != null ? authorFirstName.equals(book.authorFirstName) : book.authorFirstName == null;
     }
 
     @Override
     public int hashCode() {
-        int result = isbn.hashCode();
-        result = 31 * result + title.hashCode();
-        result = 31 * result + authorLastName.hashCode();
-        result = 31 * result + authorFirstName.hashCode();
+        int result = isbn != null ? isbn.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (authorLastName != null ? authorLastName.hashCode() : 0);
+        result = 31 * result + (authorFirstName != null ? authorFirstName.hashCode() : 0);
+        result = 31 * result + (lended ? 1 : 0);
         return result;
+    }
+
+    public void setLended(boolean lended) {
+        this.lended = lended;
     }
 }
