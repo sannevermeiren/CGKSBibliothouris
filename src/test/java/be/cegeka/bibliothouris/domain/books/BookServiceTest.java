@@ -57,7 +57,6 @@ public class BookServiceTest {
         assertThat(bookRepository.validateISBNExists("886-53-798-6928-1")).isTrue();
     }
 
-
     @Test
     public void lendABookTest() {
 
@@ -68,7 +67,7 @@ public class BookServiceTest {
         memberRepository.addMember(member2);
         memberRepository.addMember(member3);
 
-        bookService.lendABook("886-53-798-6928-1", "556");
+        bookRepository.lendABook("886-53-798-6928-1", "556");
     }
 
     @Test
@@ -81,7 +80,7 @@ public class BookServiceTest {
         memberRepository.addMember(member2);
         memberRepository.addMember(member3);
 
-        bookService.lendABook("987", "556");
+        bookRepository.lendABook("987", "556");
     }
 
     @Test
@@ -95,6 +94,6 @@ public class BookServiceTest {
         memberRepository.addMember(member2);
         memberRepository.addMember(member3);
 
-        bookService.lendABook("886-53-798-6928-1", "9887");
+        bookRepository.lendABook("886-53-798-6928-1", "9887");
     }
 }
