@@ -70,6 +70,7 @@ public class LibraryController {
     String searchByAuthor(@RequestParam(value = "author", required = true) String author){
         return bookService.searchByAuthor(author);
     }
+
     @RequestMapping(path ="/getDetails", method = RequestMethod.POST)
     public
     @ResponseBody

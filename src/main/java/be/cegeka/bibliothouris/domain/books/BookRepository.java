@@ -2,11 +2,9 @@ package be.cegeka.bibliothouris.domain.books;
 
 
 import be.cegeka.bibliothouris.domain.members.Member;
-import org.apache.commons.lang3.StringUtils;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 
 import javax.inject.Inject;
-
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +17,7 @@ import java.util.List;
 public class BookRepository {
     private List<Book> books = new ArrayList<>();
     private List<String> isbnNumbers = new ArrayList<>();
+
     public List<LendABook> lendedBooks;
 
     public BookRepository() {

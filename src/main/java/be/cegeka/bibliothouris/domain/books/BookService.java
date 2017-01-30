@@ -1,11 +1,9 @@
 package be.cegeka.bibliothouris.domain.books;
 
-import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,11 +11,6 @@ import java.util.List;
  */
 @Named
 public class BookService {
-
-
-
-
-
 
     @Inject
     private MemberRepository memberRepository;
