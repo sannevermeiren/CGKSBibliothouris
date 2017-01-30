@@ -20,10 +20,6 @@ public class BookRepository {
     @Inject
     private Book book;
 
-    public BookRepository() {
-        this.lendedBooks = new ArrayList<>();
-    }
-
     public List<Book> getAllBooks() {
         return books;
     }
@@ -139,11 +135,7 @@ public class BookRepository {
         return false;
     }
 
-    public boolean validateINSSExists(String INSS) {
-        return false;
-    }
-
-    public void lendABook(String isbn, String inss) {
+        public void lendABook(String isbn, String inss) {
         if (validateISBNExists(isbn)) {
             Rental len = new Rental(isbn, inss);
             lendedBooks.add(len);
@@ -155,23 +147,5 @@ public class BookRepository {
     }
     public String getEnhancedDetails(){
         return book.getDetails();
-    }
-
-    public String getLendingMember(String isbn) {
-        String lendedMember = "";
-        Book book1 = null;
-        for (Rental lendedBook : lendedBooks) {
-            if (lendedBook.getIsbn().equals(isbn)) {
-                String inss = lendedBook.getInss();
-                Member member = memberRepository.getMember("inss");
-                book1 = getBookByISBN("isbn");
-
-                String lastName = member.getLastName();
-                String firstName = member.getFirstName();
-                lendedMember = inss + lastName + firstName;
-            }
-        }
-        book1.setLenderInfo(lendedMember);
-        return lendedMember;
     }
 }
