@@ -3,13 +3,10 @@ package be.cegeka.bibliothouris.domain.books;
 import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by elisel on 25/01/2017.
@@ -29,8 +26,7 @@ public class BookRepositoryTest {
     Member member3 = new Member("59", "Kevin", "familienaam", "eenDerdeStraat", 45, 789, "ergensAnders");
 
     @Test
-    public void listAllBookTest()
-    {
+    public void listAllBookTest() {
         List<Book> testList = new ArrayList<Book>();
         bookRepos.addBook(b1);
         bookRepos.addBook(b2);
@@ -41,6 +37,7 @@ public class BookRepositoryTest {
         Assertions.assertThat(testList).isEqualTo(bookRepos.getAllBooks());
 
     }
+
     @Test
     public void testSearchISBN() {
         bookRepos.addBook(b1);
@@ -132,7 +129,7 @@ public class BookRepositoryTest {
     }
 
     @Test
-    public void testOnlyLastName(){
+    public void testOnlyLastName() {
         bookRepos.addBook(b1);
         bookRepos.addBook(b2);
         bookRepos.addBook(b3);
@@ -141,49 +138,10 @@ public class BookRepositoryTest {
     }
 
     @Test
-    public void testEnhancedBook(){
+    public void testEnhancedBook() {
         bookRepos.enhancedBook("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand");
         List<Book> testList = new ArrayList<>();
         testList.add(new Book("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand"));
         Assertions.assertThat(bookRepos.getAllBooks()).isEqualTo(testList);
     }
-/*
-    @Test
-    public void lendABookTest() {
-
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
-        memberRepos.addMember(member1);
-        memberRepos.addMember(member2);
-        memberRepos.addMember(member3);
-
-       bookService.lendABook("886-53-798-6928-1", "556");
-    }
-
-    @Test
-    public void lendABookWhenBookNotExists() {
-
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
-        memberRepos.addMember(member1);
-        memberRepos.addMember(member2);
-        memberRepos.addMember(member3);
-
-        bookService.lendABook("987", "556");
-    }
-
-    @Test
-    public void lendABookWhenMemberDoesNotExists() {
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
-        memberRepos.addMember(member1);
-        memberRepos.addMember(member2);
-        memberRepos.addMember(member3);
-
-        bookService.lendABook("886-53-798-6928-1", "9887");
-    }
-    */
 }
