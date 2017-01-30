@@ -2,6 +2,7 @@ package be.cegeka.bibliothouris.domain.books;
 
 import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
+import be.cegeka.bibliothouris.domain.books.Book;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,7 +26,7 @@ public class BookService {
 
     @Inject
     private BookRepository bookRepository;
-
+    private Book book;
     //   private final AtomicLong counter = new AtomicLong();
 
     public void addBook(String isbn, String title, String authorFirstName, String authorLastName) {
@@ -55,6 +56,8 @@ public class BookService {
     public String searchByAuthor(String author) {
         return bookRepository.searchByAuthor(author);
     }
+
+    public String getDetails(String title, String authorFirstName, String authorLastName,Boolean lended){return book.getDetails();}
 
     public void enhancedBook(String isbn, String title, String lastName, String firstName) {
         bookRepository.enhancedBook(isbn, title, lastName, firstName);
