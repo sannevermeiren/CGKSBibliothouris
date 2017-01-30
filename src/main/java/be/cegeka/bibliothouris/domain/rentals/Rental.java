@@ -4,9 +4,6 @@ import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDate;
 
-/**
- * Created by elisel on 26/01/2017.
- */
 public class Rental {
     LocalDate dueDate;
     String inss;
@@ -23,10 +20,12 @@ public class Rental {
         this.inss = inss;
         this.isbn = isbn;
     }
-    public String getIsbn(){
+
+    public String getIsbn() {
         return isbn;
     }
-    public String getInss(){
+
+    public String getInss() {
         return inss;
     }
 }

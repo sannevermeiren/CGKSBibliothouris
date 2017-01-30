@@ -12,10 +12,13 @@ import java.util.List;
 public class BookRepository implements FindBook {
     private List<Book> books = new ArrayList<>();
     private List<String> isbnNumbers = new ArrayList<>();
+<<<<<<< HEAD
 
 
     public List<LendABook> lendedBooks;
     public List<Rental> lendedBooks;
+=======
+>>>>>>> 2c69717fa8f7acaad90585370c3d4455eb64e730
 
     @Inject
     private MemberRepository memberRepository;
@@ -145,6 +148,7 @@ public class BookRepository implements FindBook {
         return false;
     }
 
+<<<<<<< HEAD
         public void lendABook(String isbn, String inss) {
         if (validateISBNExists(isbn)) {
             Rental len = new Rental(isbn, inss);
@@ -156,6 +160,10 @@ public class BookRepository implements FindBook {
         }
     }
     public String getDetails(){
+=======
+
+    public String getEnhancedDetails(){
+>>>>>>> 2c69717fa8f7acaad90585370c3d4455eb64e730
         return book.getDetails();
     }
 }
