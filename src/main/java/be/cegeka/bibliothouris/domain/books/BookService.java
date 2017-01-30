@@ -2,7 +2,6 @@ package be.cegeka.bibliothouris.domain.books;
 
 import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
-import be.cegeka.bibliothouris.domain.books.Book;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +13,6 @@ import java.util.List;
  */
 @Named
 public class BookService {
-    private MemberRepository memberRepository;
 
     public List<LendABook> lendedBooks;
 
@@ -24,6 +22,7 @@ public class BookService {
 
 
     @Inject
+    private MemberRepository memberRepository;
     private BookRepository bookRepository;
     private Book book;
     //   private final AtomicLong counter = new AtomicLong();

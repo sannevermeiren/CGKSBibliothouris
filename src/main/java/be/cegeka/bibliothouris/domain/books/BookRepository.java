@@ -9,7 +9,7 @@ import java.util.List;
  * Created by jensde on 25/01/2017.
  */
 @Named
-public class BookRepository implements Search, Validation {
+public class BookRepository  {
     private List<Book> books = new ArrayList<>();
     private List<String> isbnNumbers = new ArrayList<>();
 
@@ -85,7 +85,7 @@ public class BookRepository implements Search, Validation {
     }
 
 
-    @Override
+
     public String searchByISBN(String ISBN) {
         String output = "";
         List<Book> booklist = getBookListISBN(ISBN);
@@ -96,7 +96,7 @@ public class BookRepository implements Search, Validation {
         return output;
     }
 
-    @Override
+
     public String searchByTitle(String title) {
         String output = "";
         List<Book> booklist = getbookListTitle(title);
@@ -107,7 +107,6 @@ public class BookRepository implements Search, Validation {
         return output;
     }
 
-    @Override
     public String searchByAuthor(String author) {
         String output = "";
         List<Book> booklist = getbookListAuthor(author);
@@ -118,7 +117,6 @@ public class BookRepository implements Search, Validation {
         return output;
     }
 
-    @Override
     public boolean validateISBNExists(String ISBN) {
         if (getIsbnNumbers().contains(ISBN)){
             return true;
@@ -126,7 +124,6 @@ public class BookRepository implements Search, Validation {
         return false;
     }
 
-    @Override
     public boolean validateINSSExists(String INSS) {
         return false;
     }
