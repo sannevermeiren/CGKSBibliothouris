@@ -1,6 +1,5 @@
 package be.cegeka.bibliothouris.domain.books;
 
-import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 import be.cegeka.bibliothouris.domain.rentals.Rental;
 
@@ -13,6 +12,9 @@ import java.util.List;
 public class BookRepository {
     private List<Book> books = new ArrayList<>();
     private List<String> isbnNumbers = new ArrayList<>();
+
+
+    public List<Rental> lendedBooks;
 
     @Inject
     private MemberRepository memberRepository;
@@ -28,22 +30,27 @@ public class BookRepository {
     }
 
     public void addBook(Book book) {
-        books.add(book);
-        isbnNumbers.add(book.getIsbn());
+        if (validateISBNExists(book.getIsbn())) {
+            books.add(book);
+            isbnNumbers.add(book.getIsbn());
+        } else {
+            System.out.println("Book already exists");
+        }
     }
 
     public void enhancedBook(String isbn, String title, String lastName, String firstName) {
         if ((isbn != null) && (title != null) && (lastName != null)) {
-            books.add(new Book(isbn, title, lastName, firstName));
+            addBook(new Book(isbn, title, lastName, firstName));
 
         } else {
             System.out.println("Invalid entry");
         }
     }
 
-    public List<Book> getBookListISBN(String ISBN) {
-        List<Book> outputList = new ArrayList<>();
 
+    public List<Book> getBookListISBN(String ISBN) {
+
+        ArrayList<Book> outputList = new ArrayList<>();
         for (Book book : books) {
             String isbnBook = book.getIsbn();
             if (isbnBook.startsWith(ISBN)) {
@@ -134,7 +141,8 @@ public class BookRepository {
         return false;
     }
 
-    public String getEnhancedDetails(){
+    public String getDetails() {
         return book.getDetails();
     }
 }
+
