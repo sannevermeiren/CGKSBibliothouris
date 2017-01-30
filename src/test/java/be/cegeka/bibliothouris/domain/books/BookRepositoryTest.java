@@ -15,6 +15,7 @@ public class BookRepositoryTest {
     BookService bookService = new BookService();
     BookRepository bookRepos = new BookRepository();
     MemberRepository memberRepos = new MemberRepository();
+
     Book b1 = new Book("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand");
     Book b2 = new Book("978-90-274-3964-2", "Een ander boek", "van iemand anders", "voornaamEenAnder");
     Book b3 = new Book("491-87-192-6758-3", "Nog een boek", "nog iemand anders", "voornaamEenAnder");

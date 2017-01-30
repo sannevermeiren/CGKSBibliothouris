@@ -31,13 +31,19 @@ public class BookRepository {
     }
 
     public void addBook(Book book) {
-        books.add(book);
-        isbnNumbers.add(book.getIsbn());
+        if (validateISBNExists(book.getIsbn())) {
+            books.add(book);
+            isbnNumbers.add(book.getIsbn());
+        }
+        else
+        {
+            System.out.println("Book already exists");
+        }
     }
 
     public void enhancedBook(String isbn, String title, String lastName, String firstName) {
         if ((isbn != null) && (title != null) && (lastName != null)) {
-            books.add(new Book(isbn, title, lastName, firstName));
+            addBook(new Book(isbn, title, lastName, firstName));
 
         } else {
             System.out.println("Invalid entry");

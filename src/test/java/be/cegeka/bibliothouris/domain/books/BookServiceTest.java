@@ -2,15 +2,12 @@ package be.cegeka.bibliothouris.domain.books;
 
 import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
-import org.assertj.core.api.Assertions;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Arrays;
 
@@ -40,7 +37,7 @@ public class BookServiceTest {
     Member member3 = new Member("59", "Kevin", "familienaam", "eenDerdeStraat", 45, 789, "ergensAnders");
 
     @Test
-    public void addMember_ShouldCallUserRepository() throws Exception {
+    public void bookAddTest() throws Exception {
         bookService.addBook("123", "harry", "JK", "Rowling");
         verify(bookRepository).addBook(new Book("123", "harry", "JK", "Rowling"));
     }
@@ -56,6 +53,8 @@ public class BookServiceTest {
         when(bookRepository.validateISBNExists("886-53-798-6928-1")).thenReturn(true);
         assertThat(bookRepository.validateISBNExists("886-53-798-6928-1")).isTrue();
     }
+
+
 
     @Test
     public void lendABookTest() {
