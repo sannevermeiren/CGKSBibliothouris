@@ -1,11 +1,8 @@
 package be.cegeka.bibliothouris.domain.books;
 
-import org.apache.commons.lang3.StringUtils;
-
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 
 /**
@@ -30,6 +27,15 @@ public class BookRepository implements Search, Validation {
         isbnNumbers.add(book.getIsbn());
     }
 
+    public void enhancedBook(String isbn, String title, String lastName, String firstName) {
+        if ((isbn != null) && (title != null) && (lastName != null)) {
+            books.add(new Book(isbn, title, lastName, firstName));
+
+        } else {
+            System.out.println("Invalid entry");
+        }
+    }
+
 
     public List<Book> getBookListISBN(String ISBN) {
         List<Book> outputList = new ArrayList<>();
@@ -44,6 +50,38 @@ public class BookRepository implements Search, Validation {
             System.out.println("There is no book found.");
         }
         return outputList;
+    }
+
+    private List<Book> getbookListTitle(String title) {
+        List<Book> outputList = new ArrayList<>();
+
+        for (Book book : books) {
+            String titleBook = book.getTitle();
+
+            if (titleBook.startsWith(title)) {
+                outputList.add(book);
+            }
+        }
+
+        if (outputList.isEmpty()) {
+            System.out.println("There is no book found.");
+        }
+        return outputList;
+    }
+
+
+
+    public List<Book> getbookListAuthor(String author) {
+        List<Book> booklist = new ArrayList<>();
+        for (Book book : books) {
+            String fullName = book.getAuthorFirstName() + " " + book.getAuthorLastName();
+            String lastName = book.getAuthorLastName();
+            if (fullName.startsWith(author) || lastName.startsWith(author)) {
+                booklist.add(book);
+            }
+            System.out.println("Th");
+        }
+        return booklist;
     }
 
 
@@ -69,23 +107,6 @@ public class BookRepository implements Search, Validation {
         return output;
     }
 
-    private List<Book> getbookListTitle(String title) {
-        List<Book> outputList = new ArrayList<>();
-
-        for (Book book : books) {
-            String titleBook = book.getTitle();
-
-            if (titleBook.startsWith(title)) {
-                outputList.add(book);
-            }
-        }
-
-        if (outputList.isEmpty()) {
-            System.out.println("There is no book found.");
-        }
-        return outputList;
-    }
-
     @Override
     public String searchByAuthor(String author) {
         String output = "";
@@ -95,39 +116,6 @@ public class BookRepository implements Search, Validation {
         }
 
         return output;
-    }
-
-    public List<Book> getbookListAuthor(String author) {
-        List<Book> booklist = new ArrayList<>();
-        for (Book book : books) {
-            String fullName = book.getAuthorFirstName() + " " + book.getAuthorLastName();
-            String lastName = book.getAuthorLastName();
-            if (fullName.startsWith(author) || lastName.startsWith(author)) {
-                booklist.add(book);
-            }
-            System.out.println("Th");
-        }
-        return booklist;
-    }
-
-    public void enhancedBook(String isbn, String title, String lastName, String firstName) {
-        if ((isbn != null) && (title != null) && (lastName != null)) {
-            books.add(new Book(isbn, title, lastName, firstName));
-
-        } else {
-            System.out.println("Invalid entry");
-        }
-    }
-
-    public Book getBookByISBN(String ISBN ){
-        for (Book book : books) {
-            String isbn = book.getIsbn();
-            if (isbn.equals(ISBN)){
-                return book;
-            }
-        }
-        System.out.println("This book does not exists.");
-        return null;
     }
 
     @Override
@@ -142,6 +130,25 @@ public class BookRepository implements Search, Validation {
     public boolean validateINSSExists(String INSS) {
         return false;
     }
+
+
+
+
+
+    public Book getBookByISBN(String ISBN ){
+        for (Book book : books) {
+            String isbn = book.getIsbn();
+            if (isbn.equals(ISBN)){
+                return book;
+            }
+        }
+        System.out.println("This book does not exists.");
+        return null;
+    }
+
+
+
+
 
 
 }

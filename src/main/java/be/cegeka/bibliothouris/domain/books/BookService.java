@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by jensde on 25/01/2017.
@@ -51,12 +50,9 @@ public class BookService {
     public String searchByTitle(String title) {
         return bookRepository.searchByTitle(title);
     }
-<<<<<<< HEAD
-    public String searchByAuthor(String author){
-=======
 
-    public String searchByAuthor(String author) {
->>>>>>> 719f3bfca10e4702433418b68390a82d55c7d901
+
+    public String searchByAuthor (String author) {
         return bookRepository.searchByAuthor(author);
     }
 
@@ -93,10 +89,7 @@ public class BookService {
         book1.setLenderInfo(lendedMember);
         return lendedMember;
     }
-<<<<<<< HEAD
-    public void enhancedBook (String isbn, String title , String lastName, String firstName){bookRepository.enhancedBook(isbn,title, lastName,firstName);}
-=======
 
->>>>>>> 719f3bfca10e4702433418b68390a82d55c7d901
+
 
 }
