@@ -1,8 +1,5 @@
 package be.cegeka.bibliothouris.domain.books;
 
-/**
- * Created by jensde on 25/01/2017.
- */
 public class Book {
 
     private final String isbn;
@@ -18,13 +15,16 @@ public class Book {
         this.authorLastName = authorLastName;
         this.authorFirstName = authorFirstName;
         this.lended = false;
-        this.lenderInfo ="";
-    }
-    public void setLenderInfo (String info){
-    lenderInfo = info;
+        this.lenderInfo = "";
     }
 
+    public void setLenderInfo(String info) {
+        lenderInfo = info;
+    }
 
+    public void setLended(boolean lended) {
+        this.lended = lended;
+    }
 
     public boolean isLended() {
         return lended;
@@ -51,18 +51,16 @@ public class Book {
 
         sb.append("isbn: " + isbn + System.lineSeparator());
         sb.append("title: " + title + System.lineSeparator());
-        sb.append("author first name: " + authorFirstName + "\r\n");
-        sb.append("author last name: " + authorLastName+"\r\n");
+        sb.append("author first name: " + authorFirstName + System.lineSeparator());
+        sb.append("author last name: " + authorLastName + System.lineSeparator());
         if (lended = true) {
             sb.append("book lended: " + lended + lenderInfo);
 
             return sb.toString();
-        }
-        else {
-            sb.append("book is not lended: "+ lended);
+        } else {
+            sb.append("book is not lended: " + lended);
             return sb.toString();
         }
-
     }
 
     @Override
@@ -88,9 +86,5 @@ public class Book {
         result = 31 * result + (authorFirstName != null ? authorFirstName.hashCode() : 0);
         result = 31 * result + (lended ? 1 : 0);
         return result;
-    }
-
-    public void setLended(boolean lended) {
-        this.lended = lended;
     }
 }
