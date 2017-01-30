@@ -2,20 +2,17 @@ package be.cegeka.bibliothouris.domain.books;
 
 import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
-import be.cegeka.bibliothouris.domain.books.Book;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by jensde on 25/01/2017.
  */
 @Named
 public class BookService {
-    private MemberRepository memberRepository;
 
     public List<LendABook> lendedBooks;
 
@@ -25,6 +22,7 @@ public class BookService {
 
 
     @Inject
+    private MemberRepository memberRepository;
     private BookRepository bookRepository;
     private Book book;
     //   private final AtomicLong counter = new AtomicLong();
@@ -53,7 +51,8 @@ public class BookService {
         return bookRepository.searchByTitle(title);
     }
 
-    public String searchByAuthor(String author) {
+
+    public String searchByAuthor (String author) {
         return bookRepository.searchByAuthor(author);
     }
 
@@ -92,6 +91,7 @@ public class BookService {
         book1.setLenderInfo(lendedMember);
         return lendedMember;
     }
+
 
 
 }
