@@ -17,11 +17,9 @@ import java.util.concurrent.atomic.AtomicLong;
 public class BookService {
     private MemberRepository memberRepository;
 
-    public List<LendABook> lendedBooks;
 
-    public BookService() {
-        this.lendedBooks = new ArrayList<>();
-    }
+
+
 
 
     @Inject
@@ -63,35 +61,10 @@ public class BookService {
         bookRepository.enhancedBook(isbn, title, lastName, firstName);
     }
 
-    public void lendABook(String isbn, String inss) {
-        if (bookRepository.validateISBNExists(isbn)){
-            LendABook len = new LendABook(isbn,inss);
-            lendedBooks.add(len);
-            Book book = getBookByISBN(isbn);
-            book.setLended(true);
-        } else{
-            System.out.println("This book does not exists.");
-        }}
+   public void getlendABook (String isbn, String inss) {
+       bookRepository.lendABook(isbn, inss);
 
-
-    public String getLendingMember(String isbn) {
-        String lendedMember = "";
-        Book book1 = null;
-        for (LendABook lendedBook : lendedBooks) {
-            if (lendedBook.getIsbn().equals(isbn)) {
-                String inss = lendedBook.getInss();
-                Member member = memberRepository.getMember("inss");
-                book1 = bookRepository.getBookByISBN("isbn");
-
-                String lastName = member.getLastName();
-                String firstName = member.getFirstName();
-                lendedMember = inss + lastName + firstName;
-            }
-
-        }
-        book1.setLenderInfo(lendedMember);
-        return lendedMember;
+   }
+   public String getLendingMember (String isbn){return bookRepository.getLendingMember(isbn);
     }
-
-
 }

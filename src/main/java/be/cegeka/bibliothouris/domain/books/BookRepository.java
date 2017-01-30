@@ -1,7 +1,10 @@
 package be.cegeka.bibliothouris.domain.books;
 
+import be.cegeka.bibliothouris.domain.members.Member;
 import org.apache.commons.lang3.StringUtils;
+import be.cegeka.bibliothouris.domain.members.MemberRepository;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +18,11 @@ import java.util.regex.Pattern;
 public class BookRepository implements Search, Validation {
     private List<Book> books = new ArrayList<>();
     private List<String> isbnNumbers = new ArrayList<>();
+    public List<LendABook> lendedBooks;
 
-
+    public BookRepository() {
+        this.lendedBooks = new ArrayList<>();
+    }
     public List<Book> getAllBooks() {
         return books;
     }
@@ -119,10 +125,10 @@ public class BookRepository implements Search, Validation {
         }
     }
 
-    public Book getBookByISBN(String ISBN ){
+    public Book getBookByISBN(String ISBN) {
         for (Book book : books) {
             String isbn = book.getIsbn();
-            if (isbn.equals(ISBN)){
+            if (isbn.equals(ISBN)) {
                 return book;
             }
         }
@@ -132,7 +138,7 @@ public class BookRepository implements Search, Validation {
 
     @Override
     public boolean validateISBNExists(String ISBN) {
-        if (getIsbnNumbers().contains(ISBN)){
+        if (getIsbnNumbers().contains(ISBN)) {
             return true;
         }
         return false;
@@ -141,6 +147,38 @@ public class BookRepository implements Search, Validation {
     @Override
     public boolean validateINSSExists(String INSS) {
         return false;
+    }
+
+
+    public void lendABook(String isbn, String inss) {
+        if (validateISBNExists(isbn)) {
+            LendABook len = new LendABook(isbn, inss);
+            lendedBooks.add(len);
+            Book book = getBookByISBN(isbn);
+            book.setLended(true);
+        } else {
+            System.out.println("This book does not exists.");
+        }
+    }
+    @Inject
+    private MemberRepository memberRepository;
+    public String getLendingMember(String isbn) {
+        String lendedMember = "";
+        Book book1 = null;
+        for (LendABook lendedBook : lendedBooks) {
+            if (lendedBook.getIsbn().equals(isbn)) {
+                String inss = lendedBook.getInss();
+                Member member = memberRepository.getMember("inss");
+                book1 = getBookByISBN("isbn");
+
+                String lastName = member.getLastName();
+                String firstName = member.getFirstName();
+                lendedMember = inss + lastName + firstName;
+            }
+
+        }
+        book1.setLenderInfo(lendedMember);
+        return lendedMember;
     }
 
 
