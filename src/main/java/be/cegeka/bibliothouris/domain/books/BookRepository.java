@@ -140,7 +140,8 @@ public class BookRepository {
         return false;
     }
 
-        public String getDetails () {
-            return book.getDetails();
-        }
+    public String getDetails() {
+        return book.getDetails();
     }
+}
+
