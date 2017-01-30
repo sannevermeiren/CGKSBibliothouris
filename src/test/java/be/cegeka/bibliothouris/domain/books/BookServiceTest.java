@@ -57,43 +57,5 @@ public class BookServiceTest {
         assertThat(bookRepository.validateISBNExists("886-53-798-6928-1")).isTrue();
     }
 
-    @Test
-    public void lendABookTest() {
 
-        bookRepository.addBook(book1);
-        bookRepository.addBook(book2);
-        bookRepository.addBook(book3);
-        memberRepository.addMember(member1);
-        memberRepository.addMember(member2);
-        memberRepository.addMember(member3);
-
-        bookRepository.lendABook("886-53-798-6928-1", "556");
-    }
-
-    @Test
-    public void lendABookWhenBookNotExists() {
-
-        bookRepository.addBook(book1);
-        bookRepository.addBook(book2);
-        bookRepository.addBook(book3);
-        memberRepository.addMember(member1);
-        memberRepository.addMember(member2);
-        memberRepository.addMember(member3);
-
-        bookRepository.lendABook("987", "556");
-    }
-
-    @Test
-    public void lendABookWhenMemberDoesNotExists() {
-
-        bookRepository.addBook(book1);
-        bookRepository.addBook(book2);
-        bookRepository.addBook(book3);
-
-        memberRepository.addMember(member1);
-        memberRepository.addMember(member2);
-        memberRepository.addMember(member3);
-
-        bookRepository.lendABook("886-53-798-6928-1", "9887");
-    }
 }

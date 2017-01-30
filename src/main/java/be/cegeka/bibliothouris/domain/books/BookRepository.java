@@ -134,7 +134,6 @@ public class BookRepository {
         return false;
     }
 
-
     public String getEnhancedDetails(){
         return book.getDetails();
     }

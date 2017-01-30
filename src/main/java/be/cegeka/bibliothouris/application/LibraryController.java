@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.inject.Inject;
 import java.util.List;
 
-/**
- * Created by jensde on 25/01/2017.
- */
-
 @Controller
 @RequestMapping("/book")
 public class LibraryController {
@@ -75,9 +71,9 @@ public class LibraryController {
     @ResponseBody
     String getDetails(@RequestParam(value = "title:",required = true)String title,
                       @RequestParam(value ="author first name:", required = true)String authorFirstName,
-                      @RequestParam(value = "author last name: ", required = true)String authorLastName,
-                      @RequestParam(value = "lended", required = true)Boolean lended){
-        return bookService.getDetails(title,authorFirstName,authorLastName,lended);
+                      @RequestParam(value = "author last name: ", required = true)String authorLastName){
+                      //@RequestParam(value = "lended", required = true)Boolean lended){
+        return bookService.getDetails(title,authorFirstName,authorLastName);
     }
 }
 
