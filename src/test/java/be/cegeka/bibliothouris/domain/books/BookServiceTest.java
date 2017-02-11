@@ -52,12 +52,6 @@ public class BookServiceTest {
     }
 
     @Test
-    public void bookExists() {
-        when(bookRepository.validateISBNExists("886-53-798-6928-1")).thenReturn(true);
-        assertThat(bookRepository.validateISBNExists("886-53-798-6928-1")).isTrue();
-    }
-
-    @Test
     public void lendABookTest() {
 
         bookRepository.addBook(book1);

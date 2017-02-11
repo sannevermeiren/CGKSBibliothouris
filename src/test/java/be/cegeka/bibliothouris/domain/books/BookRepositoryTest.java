@@ -9,9 +9,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by elisel on 25/01/2017.
- */
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 public class BookRepositoryTest {
 
 
@@ -31,6 +31,29 @@ public class BookRepositoryTest {
         b3 = new Book("491-87-192-6758-3", "Nog een boek", "nog iemand anders", "voornaamEenAnder");
         b4 = new Book("886-53-798-7125-3", "Een boektest", "van een auteur", "voornaamEenAnder");
         b5 = new Book("769-42-815-7432-4", "BoekjesBoekjes", "iemandiemand", "voornaamiemand");
+    }
+
+    @Test
+    public void givenBookInRepo_WhenAddingBookWithSameISBN_IllegalArgumentExceptionIsThrown() {
+        bookRepos.addBook(new Book("9780132350884 ", "Clean Code A Handbook of Agile Software Craftsmanship", "C. Martin", "Robert"));
+
+        assertThatThrownBy(() -> bookRepos.addBook(new Book("9780132350884 ", "Harry Potter and the chamber of secrets", "Rowling", "J.K.")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Book already exists");
+    }
+
+    @Test
+    public void givenBookWithGivenISBNInRepo_WhenAskingIfISBNExist_ThenReturningTrue() {
+        bookRepos.addBook(new Book("9780132350884", "Clean Code A Handbook of Agile Software Craftsmanship", "C. Martin", "Robert"));
+
+        assertThat(bookRepos.doesISBNExist("9780132350884")).isTrue();
+    }
+
+    @Test
+    public void givenNoBookWithGivenISBNInRepo_WhenAskingIfISBNExist_ThenReturningFalse() {
+        bookRepos.addBook(new Book("9780132350884 ", "Clean Code A Handbook of Agile Software Craftsmanship", "C. Martin", "Robert"));
+
+        assertThat(bookRepos.doesISBNExist("111")).isFalse();
     }
 
     @Test

@@ -33,12 +33,9 @@ public class BookRepository {
     }
 
     public void addBook(Book book) {
-        if (validateISBNExists(book.getIsbn())) {
-            System.out.println("Book already exists");
-        } else {
-            books.add(book);
-            isbnNumbers.add(book.getIsbn());
-        }
+        validateISBNExists(book.getIsbn());
+        books.add(book);
+        isbnNumbers.add(book.getIsbn());
     }
 
     public void enhancedBook(String isbn, String title, String lastName, String firstName) {
@@ -53,10 +50,7 @@ public class BookRepository {
 
     public List<Book> getBookListISBN(String ISBN) {
 
-        List<Book> result = books.stream().filter(book->book.getIsbn().contains(ISBN)).collect(Collectors.toList());
-        return result;
-
-
+        return books.stream().filter(book -> book.getIsbn().contains(ISBN)).collect(Collectors.toList());
     }
 
     private List<Book> getbookListTitle(String title) {
@@ -130,11 +124,14 @@ public class BookRepository {
         return output;
     }
 
-    public boolean validateISBNExists(String ISBN) {
-        if (getIsbnNumbers().contains(ISBN)) {
-            return true;
+    public void validateISBNExists(String ISBN) {
+        if (doesISBNExist(ISBN)) {
+            throw new IllegalArgumentException("Book already exists");
         }
-        return false;
+    }
+
+    public boolean doesISBNExist(String ISBN) {
+        return getIsbnNumbers().contains(ISBN);
     }
 
     public String getDetails() {

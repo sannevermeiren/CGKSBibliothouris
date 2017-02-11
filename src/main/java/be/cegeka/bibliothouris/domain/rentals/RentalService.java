@@ -20,12 +20,13 @@ public class RentalService {
     }
 
     public void lendABook(String isbn, String inss) {
-        if (bookRepository.validateISBNExists(isbn)) {
+
+       if (bookRepository.doesISBNExist(isbn)) {
             Rental len = new Rental(isbn, inss);
             rentalRepository.lendedBooks.add(len);
             Book book = bookRepository.getBookByISBN(isbn);
             book.setLended(true);
-        } else {
+       } else {
             System.out.println("This book does not exists.");
         }
     }
