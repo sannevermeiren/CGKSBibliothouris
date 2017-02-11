@@ -49,7 +49,6 @@ public class BookRepository {
 
 
     public List<Book> getBookListISBN(String ISBN) {
-
         return books.stream().filter(book -> book.getIsbn().contains(ISBN)).collect(Collectors.toList());
     }
 
@@ -84,13 +83,9 @@ public class BookRepository {
     }
 
     public String searchByISBN(String ISBN) {
-        String output = "";
-        List<Book> booklist = getBookListISBN(ISBN);
-        for (Book book : booklist) {
-            String det = book.getDetails();
-            output += det + System.lineSeparator();
-        }
-        return output;
+        return getBookListISBN(ISBN).stream()
+                .map(book -> book.getDetails())
+                .reduce("", (result, detailsBook) -> result+= detailsBook + System.lineSeparator());
     }
 
     public Book getBookByISBN(String ISBN) {
