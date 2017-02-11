@@ -8,7 +8,7 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Named
@@ -33,12 +33,9 @@ public class BookRepository {
     }
 
     public void addBook(Book book) {
-        if (validateISBNExists(book.getIsbn())) {
-            books.add(book);
-            isbnNumbers.add(book.getIsbn());
-        } else {
-            System.out.println("Book already exists");
-        }
+        validateISBNExists(book.getIsbn());
+        books.add(book);
+        isbnNumbers.add(book.getIsbn());
     }
 
     public void enhancedBook(String isbn, String title, String lastName, String firstName) {
@@ -52,14 +49,7 @@ public class BookRepository {
 
 
     public List<Book> getBookListISBN(String ISBN) {
-
-        ArrayList<Book> outputList = new ArrayList<>();
-        Stream<Book> bookStream = outputList.stream();
-        Pattern input = Pattern.compile("");
-        List<Book> result = bookStream.filter(book->input.matcher(book.getIsbn()).matches()).Collect(Collector.toList());
-        return result;
-
-
+        return books.stream().filter(book -> book.getIsbn().contains(ISBN)).collect(Collectors.toList());
     }
 
     private List<Book> getbookListTitle(String title) {
@@ -93,13 +83,9 @@ public class BookRepository {
     }
 
     public String searchByISBN(String ISBN) {
-        String output = "";
-        List<Book> booklist = getBookListISBN(ISBN);
-        for (Book book : booklist) {
-            String det = book.getDetails();
-            output += det + System.lineSeparator();
-        }
-        return output;
+        return getBookListISBN(ISBN).stream()
+                .map(book -> book.getDetails())
+                .reduce("", (result, detailsBook) -> result+= detailsBook + System.lineSeparator());
     }
 
     public Book getBookByISBN(String ISBN) {
@@ -133,11 +119,14 @@ public class BookRepository {
         return output;
     }
 
-    public boolean validateISBNExists(String ISBN) {
-        if (getIsbnNumbers().contains(ISBN)) {
-            return true;
+    public void validateISBNExists(String ISBN) {
+        if (doesISBNExist(ISBN)) {
+            throw new IllegalArgumentException("Book already exists");
         }
-        return false;
+    }
+
+    public boolean doesISBNExist(String ISBN) {
+        return getIsbnNumbers().contains(ISBN);
     }
 
     public String getDetails() {

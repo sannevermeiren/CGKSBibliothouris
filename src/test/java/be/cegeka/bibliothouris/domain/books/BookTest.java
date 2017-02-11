@@ -39,8 +39,16 @@ public class BookTest {
     }
 
     @Test
-    public void getDetailsTest() {
-        Assertions.assertThat(book.getDetails()).isEqualTo("bookDetails" +"\r\n" + "isbn: " + book.getIsbn() + "\r\n" + "title: " + book.getTitle() + "\r\n" + "author first name: " + book.getAuthorFirstName() + "\r\n"+ "author last name: " +book.getAuthorLastName()+"\r\n"+ "book lended: "+book.isLended());
+    public void GivenLendedBook_WhenGetDetails_ThenDetailsShowThatBookIsLended() {
+        book.setLended(true);
+        book.setLenderInfo("some random lender info");
+        Assertions.assertThat(book.getDetails()).isEqualTo("bookDetails" +"\r\n" + "isbn: " + book.getIsbn() + "\r\n" + "title: " + book.getTitle() + "\r\n" + "author first name: " + book.getAuthorFirstName() + "\r\n"+ "author last name: " +book.getAuthorLastName()+"\r\n"+ "book lended: " + book.isLended() + "some random lender info");
+    }
+
+    @Test
+    public void GivenNotLendedBook_WhenGetDetails_ThenDetailsShowThatBookIsLended() {
+        book.setLended(false);
+        Assertions.assertThat(book.getDetails()).isEqualTo("bookDetails" +"\r\n" + "isbn: " + book.getIsbn() + "\r\n" + "title: " + book.getTitle() + "\r\n" + "author first name: " + book.getAuthorFirstName() + "\r\n"+ "author last name: " +book.getAuthorLastName()+"\r\n"+ "book is not lended: "+book.isLended());
     }
 
 }
