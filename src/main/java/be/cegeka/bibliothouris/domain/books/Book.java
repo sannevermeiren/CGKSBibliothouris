@@ -1,5 +1,7 @@
 package be.cegeka.bibliothouris.domain.books;
 
+import static java.lang.System.lineSeparator;
+
 public class Book {
 
     private final String isbn;
@@ -47,20 +49,25 @@ public class Book {
     }
 
     public String getDetails() {
-        StringBuilder sb = new StringBuilder("bookDetails\r\n");
+        StringBuilder sb = new StringBuilder("bookDetails" + lineSeparator());
+        sb.append("isbn: " + isbn + lineSeparator());
+        sb.append("title: " + title + lineSeparator());
+        sb.append("author first name: " + authorFirstName + lineSeparator());
+        sb.append("author last name: " + authorLastName + lineSeparator());
+        sb.append(getLendedMessage());
+        return sb.toString();
+    }
 
-        sb.append("isbn: " + isbn + System.lineSeparator());
-        sb.append("title: " + title + System.lineSeparator());
-        sb.append("author first name: " + authorFirstName + System.lineSeparator());
-        sb.append("author last name: " + authorLastName + System.lineSeparator());
-        if (lended = true) {
-            sb.append("book lended: " + lended + lenderInfo);
+    private String getLendedMessage() {
+        return lended ? getBookIsLendedMessage() : getBookIsNotLendedMessage();
+    }
 
-            return sb.toString();
-        } else {
-            sb.append("book is not lended: " + lended);
-            return sb.toString();
-        }
+    private String getBookIsNotLendedMessage() {
+        return "book is not lended: " + lended;
+    }
+
+    private String getBookIsLendedMessage() {
+        return "book lended: " + lended + lenderInfo;
     }
 
     @Override

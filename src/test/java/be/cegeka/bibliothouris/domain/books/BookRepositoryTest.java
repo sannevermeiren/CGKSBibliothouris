@@ -51,7 +51,7 @@ public class BookRepositoryTest {
         bookRepos.addBook(b1);
         bookRepos.addBook(b2);
         bookRepos.addBook(b3);
-        Assertions.assertThat(bookRepos.searchByISBN("886-53-798-6928-1")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook lended: true\r\n");
+        Assertions.assertThat(bookRepos.searchByISBN("886-53-798-6928-1")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook is not lended: false\r\n");
     }
 
     @Test
@@ -64,7 +64,7 @@ public class BookRepositoryTest {
                 "isbn: 886-53-798-6928-1\r\n" +
                 "title: Een boek\r\n" +
                 "author first name: voornaamiemand\r\n" +
-                "author last name: iemand\r\nbook lended: true\r\nbookDetails\r\nisbn: 886-53-798-7125-3\r\ntitle: Een boektest\r\nauthor first name: voornaamEenAnder\r\nauthor last name: van een auteur\r\nbook lended: true\r\n");
+                "author last name: iemand\r\nbook is not lended: false\r\nbookDetails\r\nisbn: 886-53-798-7125-3\r\ntitle: Een boektest\r\nauthor first name: voornaamEenAnder\r\nauthor last name: van een auteur\r\nbook is not lended: false\r\n");
     }
 
     @Test
@@ -80,7 +80,7 @@ public class BookRepositoryTest {
         bookRepos.addBook(b1);
         bookRepos.addBook(b2);
         bookRepos.addBook(b3);
-        Assertions.assertThat(bookRepos.searchByTitle("Een boek")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook lended: true\r\n");
+        Assertions.assertThat(bookRepos.searchByTitle("Een boek")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook is not lended: false\r\n");
     }
 
     @Test
@@ -94,8 +94,8 @@ public class BookRepositoryTest {
                 "title: Een boek\r\n" +
                 "author first name: voornaamiemand\r\n" +
                 "author last name: iemand\r\n" +
-                "book lended: true\r\n" +
-                "bookDetails\r\nisbn: 886-53-798-7125-3\r\ntitle: Een boektest\r\nauthor first name: voornaamEenAnder\r\nauthor last name: van een auteur\r\nbook lended: true\r\n");
+                "book is not lended: false\r\n" +
+                "bookDetails\r\nisbn: 886-53-798-7125-3\r\ntitle: Een boektest\r\nauthor first name: voornaamEenAnder\r\nauthor last name: van een auteur\r\nbook is not lended: false\r\n");
     }
 
     @Test
@@ -111,7 +111,7 @@ public class BookRepositoryTest {
         bookRepos.addBook(b1);
         bookRepos.addBook(b2);
         bookRepos.addBook(b3);
-        Assertions.assertThat(bookRepos.searchByAuthor("voornaamiemand iemand")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook lended: true\r\n");
+        Assertions.assertThat(bookRepos.searchByAuthor("voornaamiemand iemand")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook is not lended: false\r\n");
     }
 
     @Test
@@ -124,8 +124,8 @@ public class BookRepositoryTest {
                 "isbn: 886-53-798-6928-1\r\n" +
                 "title: Een boek\r\n" +
                 "author first name: voornaamiemand\r\n" +
-                "author last name: iemand\r\nbook lended: true\r\n" +
-                "bookDetails\r\nisbn: 769-42-815-7432-4\r\ntitle: BoekjesBoekjes\r\nauthor first name: voornaamiemand\r\nauthor last name: iemandiemand\r\nbook lended: true\r\n");
+                "author last name: iemand\r\nbook is not lended: false\r\n" +
+                "bookDetails\r\nisbn: 769-42-815-7432-4\r\ntitle: BoekjesBoekjes\r\nauthor first name: voornaamiemand\r\nauthor last name: iemandiemand\r\nbook is not lended: false\r\n");
     }
 
     @Test
@@ -141,7 +141,7 @@ public class BookRepositoryTest {
         bookRepos.addBook(b1);
         bookRepos.addBook(b2);
         bookRepos.addBook(b3);
-        Assertions.assertThat(bookRepos.searchByAuthor("iemand")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook lended: true\r\n");
+        Assertions.assertThat(bookRepos.searchByAuthor("iemand")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook is not lended: false\r\n");
 
     }
 
