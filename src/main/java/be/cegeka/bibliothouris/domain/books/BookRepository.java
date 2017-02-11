@@ -34,10 +34,10 @@ public class BookRepository {
 
     public void addBook(Book book) {
         if (validateISBNExists(book.getIsbn())) {
+            System.out.println("Book already exists");
+        } else {
             books.add(book);
             isbnNumbers.add(book.getIsbn());
-        } else {
-            System.out.println("Book already exists");
         }
     }
 
@@ -53,10 +53,7 @@ public class BookRepository {
 
     public List<Book> getBookListISBN(String ISBN) {
 
-        ArrayList<Book> outputList = new ArrayList<>();
-        Stream<Book> bookStream = outputList.stream();
-        Pattern input = Pattern.compile("");
-        List<Book> result = bookStream.filter(book->input.matcher(book.getIsbn()).matches()).collect(Collectors.toList());
+        List<Book> result = books.stream().filter(book->book.getIsbn().contains(ISBN)).collect(Collectors.toList());
         return result;
 
 

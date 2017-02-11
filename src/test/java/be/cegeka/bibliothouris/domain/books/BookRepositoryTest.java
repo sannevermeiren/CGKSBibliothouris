@@ -3,6 +3,7 @@ package be.cegeka.bibliothouris.domain.books;
 import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,19 +13,25 @@ import java.util.List;
  * Created by elisel on 25/01/2017.
  */
 public class BookRepositoryTest {
-    BookService bookService = new BookService();
-    BookRepository bookRepos = new BookRepository();
-    MemberRepository memberRepos = new MemberRepository();
 
-    Book b1 = new Book("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand");
-    Book b2 = new Book("978-90-274-3964-2", "Een ander boek", "van iemand anders", "voornaamEenAnder");
-    Book b3 = new Book("491-87-192-6758-3", "Nog een boek", "nog iemand anders", "voornaamEenAnder");
-    Book b4 = new Book("886-53-798-7125-3", "Een boektest", "van een auteur", "voornaamEenAnder");
-    Book b5 = new Book("769-42-815-7432-4", "BoekjesBoekjes", "iemandiemand", "voornaamiemand");
 
-    Member member1 = new Member("556", "Elize", "Lodewycks", "eenStraat", 12, 9999, "verWeg");
-    Member member2 = new Member("459", "Jens", "Devriendt", "eenAndereStraat", 56, 1569, "ergens");
-    Member member3 = new Member("59", "Kevin", "familienaam", "eenDerdeStraat", 45, 789, "ergensAnders");
+    private BookRepository bookRepos;
+    private Book b1;
+    private Book b2;
+    private Book b3;
+    private Book b4;
+    private Book b5;
+
+    @Before
+    public void setup() {
+        bookRepos = new BookRepository();
+
+        b1 = new Book("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand");
+        b2 = new Book("978-90-274-3964-2", "Een ander boek", "van iemand anders", "voornaamEenAnder");
+        b3 = new Book("491-87-192-6758-3", "Nog een boek", "nog iemand anders", "voornaamEenAnder");
+        b4 = new Book("886-53-798-7125-3", "Een boektest", "van een auteur", "voornaamEenAnder");
+        b5 = new Book("769-42-815-7432-4", "BoekjesBoekjes", "iemandiemand", "voornaamiemand");
+    }
 
     @Test
     public void listAllBookTest() {
