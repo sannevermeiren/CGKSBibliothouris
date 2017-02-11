@@ -28,11 +28,6 @@ public class MemberServiceTest {
     @Mock
     private MemberRepository memberRepository;
 
-    @Before
-    public void setUp() throws Exception {
-        ReflectionTestUtils.setField(memberService, "counter", new AtomicLong(4l));
-    }
-
     @Test
     public void addMember_ShouldCallMemberRepository() throws Exception {
         memberService.addMember("123", "paulien" , "lemay", "hendrik dewildestraat", 24, 8501, "bissegem");
@@ -44,7 +39,6 @@ public class MemberServiceTest {
     public void getAllUsers() throws Exception {
         Member member1 = new Member("556", "Elize", "Lodewycks", "eenStraat", 12, 9999, "verWeg");
         Member member2 = new Member("459", "Jens", "Devriendt", "eenAndereStraat", 56, 1569, "ergens");
-        Member member3 = new Member("59", "Kevin", "familienaam", "eenDerdeStraat", 45, 789, "ergensAnders");
 
         when(memberRepository.getAllMembers()).thenReturn(Arrays.asList(member1, member2));
 

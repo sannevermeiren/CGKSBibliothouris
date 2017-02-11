@@ -16,7 +16,6 @@ public class BookService {
     private BookRepository bookRepository;
     @Inject
     private RentalRepository rentalRepository;
-    //   private final AtomicLong counter = new AtomicLong();
 
     public void addBook(String isbn, String title, String authorFirstName, String authorLastName) {
          bookRepository.addBook(new Book(isbn, title, authorFirstName, authorLastName));
