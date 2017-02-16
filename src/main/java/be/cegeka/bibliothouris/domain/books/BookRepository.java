@@ -33,7 +33,7 @@ public class BookRepository {
     }
 
     public void addBook(Book book) {
-        if (validateISBNExists(book.getIsbn())) {
+        if (!(validateISBNExists(book.getIsbn()))) {
             books.add(book);
             isbnNumbers.add(book.getIsbn());
         } else {
