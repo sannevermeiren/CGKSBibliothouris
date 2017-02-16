@@ -8,7 +8,7 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Named
@@ -56,7 +56,7 @@ public class BookRepository {
         ArrayList<Book> outputList = new ArrayList<>();
         Stream<Book> bookStream = outputList.stream();
         Pattern input = Pattern.compile("");
-        List<Book> result = bookStream.filter(book->input.matcher(book.getIsbn()).matches()).Collect(Collector.toList());
+        List<Book> result = bookStream.filter(book->input.matcher(book.getIsbn()).matches()).collect(Collectors.toList());
         return result;
 
 
