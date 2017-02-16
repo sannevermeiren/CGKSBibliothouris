@@ -56,7 +56,7 @@ public class BookRepository {
         ArrayList<Book> outputList = new ArrayList<>();
         Stream<Book> bookStream = outputList.stream();
         Pattern input = Pattern.compile("");
-        List<Book> result = bookStream.filter(book->input.matcher(book.getIsbn()).matches()).collect(Collectors.toList());
+        List<Book> result = bookStream.filter(book -> input.matcher(book.getIsbn()).matches()).collect(Collectors.toList());
         return result;
 
 
@@ -143,5 +143,7 @@ public class BookRepository {
     public String getDetails() {
         return book.getDetails();
     }
+
+
 }
 
