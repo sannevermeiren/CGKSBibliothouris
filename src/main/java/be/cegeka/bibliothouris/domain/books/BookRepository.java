@@ -2,6 +2,7 @@ package be.cegeka.bibliothouris.domain.books;
 
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 import be.cegeka.bibliothouris.domain.rentals.Rental;
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -89,7 +90,7 @@ public class BookRepository {
         return booklist;
     }
 
-    public String searchByISBN(String ISBN) {
+ /*   public String searchByISBN(String ISBN) {
         String output = "";
         List<Book> booklist = getBookListISBN(ISBN);
         for (Book book : booklist) {
@@ -97,6 +98,32 @@ public class BookRepository {
             output += det + System.lineSeparator();
         }
         return output;
+    }*/
+
+    public String searchByISBN(String ISBN){
+        String output = MakeString(lookForBooksWithThisISBN(ISBN));
+        return output;
+    }
+
+    private String MakeString(List<Book> books) {
+        StringBuilder output = new StringBuilder();
+
+        for (Book book : books) {
+            String det = book.getDetails();
+            output.append(det + "\r\n");
+        }
+
+        return output.toString();
+    }
+
+    private List<Book> lookForBooksWithThisISBN(String ISBN) {
+        List<Book> returnList = new ArrayList<>();
+        for (Book book : books) {
+            if (book.getIsbn().matches(".*" + ISBN + ".*")){
+                returnList.add(book);
+            }
+        }
+        return returnList;
     }
 
     public Book getBookByISBN(String ISBN) {
