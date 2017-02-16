@@ -122,7 +122,7 @@ public class BookRepositoryTest {
         testList.add(b1);
         testList.add(b2);
         testList.add(b3);
-        testList.add(new Book("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand"));
+        testList.add(new Book("886-53-798-7125-3", "Een boektest", "van een auteur", "voornaamEenAnder"));
         Assertions.assertThat(bookRepos.getAllBooks()).isEqualTo(testList);
     }
 }
