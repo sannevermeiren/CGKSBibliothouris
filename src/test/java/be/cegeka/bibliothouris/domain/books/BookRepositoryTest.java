@@ -117,8 +117,11 @@ public class BookRepositoryTest {
 
     @Test
     public void testEnhancedBook() {
-        bookRepos.enhancedBook("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand");
+        bookRepos.enhancedBook("886-53-798-7125-3", "Een boektest", "van een auteur", "voornaamEenAnder");
         List<Book> testList = new ArrayList<>();
+        testList.add(b1);
+        testList.add(b2);
+        testList.add(b3);
         testList.add(new Book("886-53-798-6928-1", "Een boek", "iemand", "voornaamiemand"));
         Assertions.assertThat(bookRepos.getAllBooks()).isEqualTo(testList);
     }
