@@ -52,14 +52,11 @@ public class BookRepository {
 
 
     public List<Book> getBookListISBN(String ISBN) {
-
-        ArrayList<Book> outputList = new ArrayList<>();
-        Stream<Book> bookStream = outputList.stream();
+        List<Book> result = new ArrayList<>();
+        Stream<Book> bookStream = result.stream();
         Pattern input = Pattern.compile("");
-        List<Book> result = bookStream.filter(book -> input.matcher(book.getIsbn()).matches()).collect(Collectors.toList());
+        result = bookStream.filter(book -> input.matcher(book.getIsbn()).matches()).collect(Collectors.toList());
         return result;
-
-
     }
 
     private List<Book> getbookListTitle(String title) {
