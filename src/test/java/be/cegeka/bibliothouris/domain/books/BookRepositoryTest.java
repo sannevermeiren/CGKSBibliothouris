@@ -3,6 +3,7 @@ package be.cegeka.bibliothouris.domain.books;
 import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -26,12 +27,16 @@ public class BookRepositoryTest {
     Member member2 = new Member("459", "Jens", "Devriendt", "eenAndereStraat", 56, 1569, "ergens");
     Member member3 = new Member("59", "Kevin", "familienaam", "eenDerdeStraat", 45, 789, "ergensAnders");
 
-    @Test
-    public void listAllBookTest() {
-        List<Book> testList = new ArrayList<Book>();
+    @Before
+    public void AddBooksToRepos(){
         bookRepos.addBook(b1);
         bookRepos.addBook(b2);
         bookRepos.addBook(b3);
+    }
+
+    @Test
+    public void listAllBookTest() {
+        List<Book> testList = new ArrayList<Book>();
         testList.add(b1);
         testList.add(b2);
         testList.add(b3);
@@ -41,17 +46,11 @@ public class BookRepositoryTest {
 
     @Test
     public void testSearchISBN() {
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
         Assertions.assertThat(bookRepos.searchByISBN("886-53-798-6928-1")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook lended: true\r\n");
     }
 
     @Test
     public void testWithWildCard() {
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
         bookRepos.addBook(b4);
         Assertions.assertThat(bookRepos.searchByISBN("886-53-798")).isEqualTo("bookDetails\r\n" +
                 "isbn: 886-53-798-6928-1\r\n" +
@@ -62,25 +61,18 @@ public class BookRepositoryTest {
 
     @Test
     public void testNoBookFound() {
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
         Assertions.assertThat(bookRepos.searchByISBN("456-53-798")).isEqualTo("");
     }
 
     @Test
     public void testSearchTitle() {
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
+
         Assertions.assertThat(bookRepos.searchByTitle("Een boek")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook lended: true\r\n");
     }
 
     @Test
     public void testWithWildCardTitle() {
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
+
         bookRepos.addBook(b4);
         Assertions.assertThat(bookRepos.searchByTitle("Een b")).isEqualTo("bookDetails\r\n" +
                 "isbn: 886-53-798-6928-1\r\n" +
@@ -93,25 +85,16 @@ public class BookRepositoryTest {
 
     @Test
     public void testNoBookFoundTitle() {
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
         Assertions.assertThat(bookRepos.searchByTitle("blablabla")).isEqualTo("");
     }
 
     @Test
     public void testSearchAuthor() {
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
         Assertions.assertThat(bookRepos.searchByAuthor("voornaamiemand iemand")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook lended: true\r\n");
     }
 
     @Test
     public void testWithWildCardAuthor() {
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
         bookRepos.addBook(b5);
         Assertions.assertThat(bookRepos.searchByAuthor("voornaamiemand")).isEqualTo("bookDetails\r\n" +
                 "isbn: 886-53-798-6928-1\r\n" +
@@ -123,17 +106,11 @@ public class BookRepositoryTest {
 
     @Test
     public void testNoBookFoundAuthor() {
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
         Assertions.assertThat(bookRepos.searchByAuthor("blablabla")).isEqualTo("");
     }
 
     @Test
     public void testOnlyLastName() {
-        bookRepos.addBook(b1);
-        bookRepos.addBook(b2);
-        bookRepos.addBook(b3);
         Assertions.assertThat(bookRepos.searchByAuthor("iemand")).isEqualTo("bookDetails\r\nisbn: 886-53-798-6928-1\r\ntitle: Een boek\r\nauthor first name: voornaamiemand\r\nauthor last name: iemand\r\nbook lended: true\r\n");
 
     }
