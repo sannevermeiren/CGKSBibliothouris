@@ -6,6 +6,7 @@ import be.cegeka.bibliothouris.domain.rentals.Rental;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -104,7 +105,7 @@ public class BookRepository {
         return returnList;
     }
 
-    public Book getBookByISBN(String ISBN) {
+    public Optional<Book> getBookByISBN(String ISBN) {
         Book book = null;
 
         for (Book book1 : books) {
@@ -113,7 +114,7 @@ public class BookRepository {
                 book = book1;
             }
         }
-        return book;
+        return Optional.ofNullable(book);
     }
 
     public String searchByTitle(String title) {
