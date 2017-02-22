@@ -3,6 +3,7 @@ package be.cegeka.bibliothouris.domain.members;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Named
 public class MemberRepository {
@@ -50,14 +51,9 @@ public class MemberRepository {
             return ("No members found");
         }
     }
-    public Member getMember (String inss){
-        Member member1 = null;
-        for (Member member : members) {
-            if (member.getInss().equals(inss)){
-                member1 = member;
-
-            }
-
-        } return member1;
+    public Optional<Member> getMember (String inss){
+        return members.stream()
+                .filter(member -> member.hasInss(inss))
+                .findFirst();
     }
 }

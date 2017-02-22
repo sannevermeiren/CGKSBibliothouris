@@ -2,15 +2,16 @@ package be.cegeka.bibliothouris.domain.books;
 
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 import be.cegeka.bibliothouris.domain.rentals.Rental;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 //@Named
 public class BookRepository {
@@ -56,38 +57,25 @@ public class BookRepository {
         List<Book> result = new ArrayList<>();
         Stream<Book> bookStream = result.stream();
         Pattern input = Pattern.compile("");
-        result = bookStream.filter(book -> input.matcher(book.getIsbn()).matches()).collect(Collectors.toList());
+        result = bookStream.filter(book -> input.matcher(book.getIsbn()).matches()).collect(toList());
         return result;
     }
 
     private List<Book> getbookListTitle(String title) {
-        List<Book> outputList = new ArrayList<>();
-
-        for (Book book : books) {
-            String titleBook = book.getTitle();
-
-            if (titleBook.startsWith(title)) {
-                outputList.add(book);
-            }
-        }
-
-        if (outputList.isEmpty()) {
-            System.out.println("There is no book found.");
-        }
-        return outputList;
+        // Use Stream api for more readable code
+        return books.stream()
+                .filter(book -> book.getTitle().startsWith(title))
+                .collect(toList());
     }
 
     public List<Book> getbookListAuthor(String author) {
-        List<Book> booklist = new ArrayList<>();
-        for (Book book : books) {
-            String fullName = book.getAuthorFirstName() + " " + book.getAuthorLastName();
-            String lastName = book.getAuthorLastName();
-            if (fullName.startsWith(author) || lastName.startsWith(author)) {
-                booklist.add(book);
-            }
-            System.out.println("There is no book found.");
-        }
-        return booklist;
+        // Use Stream api for more readable code
+        // Put logic with Object it belongs: logic for creating the full name of the author doesn't belong here.
+        // I moved it in a method on Book, but you probably want to create an Author Object.
+        return books.stream()
+                .filter(book -> book.getAuthorFullName().startsWith(author) ||
+                        book.getAuthorLastName().startsWith(author))
+                .collect(toList());
     }
 
  /*   public String searchByISBN(String ISBN) {
@@ -101,19 +89,10 @@ public class BookRepository {
     }*/
 
     public String searchByISBN(String ISBN){
-        String output = MakeString(lookForBooksWithThisISBN(ISBN));
-        return output;
-    }
-
-    private String MakeString(List<Book> books) {
-        StringBuilder output = new StringBuilder();
-
-        for (Book book : books) {
-            String det = book.getDetails();
-            output.append(det + "\r\n");
-        }
-
-        return output.toString();
+        // Use stream API
+        return lookForBooksWithThisISBN(ISBN).stream()
+                .map(book -> book.getDetails())
+                .collect(joining("\r\n"));
     }
 
     private List<Book> lookForBooksWithThisISBN(String ISBN) {
@@ -126,7 +105,7 @@ public class BookRepository {
         return returnList;
     }
 
-    public Book getBookByISBN(String ISBN) {
+    public Optional<Book> getBookByISBN(String ISBN) {
         Book book = null;
 
         for (Book book1 : books) {
@@ -135,7 +114,7 @@ public class BookRepository {
                 book = book1;
             }
         }
-        return book;
+        return Optional.ofNullable(book);
     }
 
     public String searchByTitle(String title) {

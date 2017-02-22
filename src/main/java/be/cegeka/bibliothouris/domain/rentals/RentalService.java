@@ -1,10 +1,10 @@
 package be.cegeka.bibliothouris.domain.rentals;
 
-import be.cegeka.bibliothouris.domain.books.Book;
 import be.cegeka.bibliothouris.domain.books.BookRepository;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 
 import javax.inject.Inject;
+import java.util.Optional;
 
 public class RentalService {
 
@@ -15,18 +15,16 @@ public class RentalService {
     @Inject
     private BookRepository bookRepository;
 
-    public String getLendingMember(String isbn) {
+    public Optional<String> getLendingMember(String isbn) {
         return rentalRepository.getLendingMember(isbn);
     }
 
     public void lendABook(String isbn, String inss) {
-        if (bookRepository.validateISBNExists(isbn)) {
-            Rental len = new Rental(isbn, inss);
-            rentalRepository.lendedBooks.add(len);
-            Book book = bookRepository.getBookByISBN(isbn);
-            book.setLended(true);
-        } else {
-            System.out.println("This book does not exists.");
-        }
+        bookRepository.getBookByISBN(isbn)
+                .ifPresent(book -> {
+                    Rental len = new Rental(isbn, inss);
+                    rentalRepository.lendedBooks.add(len);
+                    book.setLended(true);
+                });
     }
 }
