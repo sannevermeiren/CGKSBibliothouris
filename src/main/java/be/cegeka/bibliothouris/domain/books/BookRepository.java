@@ -2,10 +2,8 @@ package be.cegeka.bibliothouris.domain.books;
 
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 import be.cegeka.bibliothouris.domain.rentals.Rental;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
