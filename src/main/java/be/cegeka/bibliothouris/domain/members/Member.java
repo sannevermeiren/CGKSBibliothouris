@@ -1,8 +1,20 @@
 package be.cegeka.bibliothouris.domain.members;
 
-public class Member {
 
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Member {
+    @Id
     private String inss;
+
+
+    public Member() {
+
+    }
+
     private String lastName;
     private String firstName;
     private String street;
@@ -19,6 +31,8 @@ public class Member {
         this.postalCode = postalCode;
         this.city = city;
     }
+
+
 
     public String getStreet()
     {

@@ -12,9 +12,9 @@ public class BookService {
 
     @Inject
     private MemberRepository memberRepository;
-    @Inject
+    //@Inject
     private BookRepository bookRepository;
-    @Inject
+    //@Inject
     private RentalRepository rentalRepository;
     //   private final AtomicLong counter = new AtomicLong();
 
