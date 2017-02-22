@@ -1,7 +1,6 @@
 package be.cegeka.bibliothouris.domain.rentals;
 
 import be.cegeka.bibliothouris.domain.books.BookRepository;
-import be.cegeka.bibliothouris.domain.members.Member;
 import be.cegeka.bibliothouris.domain.members.MemberRepository;
 
 import javax.inject.Inject;
@@ -34,16 +33,16 @@ public class RentalRepository {
                 .findFirst()
                 .flatMap(rental -> {
                     // Need to clean up this logic. Doesn't seem the good place to put it
-                    String inss = rental.getInss();
-                    Member member = memberRepository.getMember("inss");
-                    return bookRepository.getBookByISBN("isbn")
-                            .map(book -> {
-                                String lastName = member.getLastName();
-                                String firstName = member.getFirstName();
-                                String lendedMember = inss + lastName + firstName;
-                                book.setLenderInfo(lendedMember);
-                                return lendedMember;
-                            });
+                    return memberRepository.getMember("inss")
+                            .flatMap(member ->
+                                    bookRepository.getBookByISBN("isbn")
+                                            .map(book -> {
+                                                String lastName = member.getLastName();
+                                                String firstName = member.getFirstName();
+                                                String lendedMember = rental.getInss() + lastName + firstName;
+                                                book.setLenderInfo(lendedMember);
+                                                return lendedMember;
+                                            }));
                 });
     }
 }

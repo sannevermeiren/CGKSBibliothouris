@@ -62,6 +62,10 @@ public class Member {
         return city;
     }
 
+    public boolean hasInss(String inss) {
+        return this.inss.equals(inss);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
