@@ -63,6 +63,10 @@ public class Book {
         }
     }
 
+    public String getAuthorFullName() {
+        return getAuthorFirstName() + " " + getAuthorLastName();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

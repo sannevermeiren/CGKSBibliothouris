@@ -7,8 +7,9 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 //@Named
 public class BookRepository {
@@ -54,38 +55,25 @@ public class BookRepository {
         List<Book> result = new ArrayList<>();
         Stream<Book> bookStream = result.stream();
         Pattern input = Pattern.compile("");
-        result = bookStream.filter(book -> input.matcher(book.getIsbn()).matches()).collect(Collectors.toList());
+        result = bookStream.filter(book -> input.matcher(book.getIsbn()).matches()).collect(toList());
         return result;
     }
 
     private List<Book> getbookListTitle(String title) {
-        List<Book> outputList = new ArrayList<>();
-
-        for (Book book : books) {
-            String titleBook = book.getTitle();
-
-            if (titleBook.startsWith(title)) {
-                outputList.add(book);
-            }
-        }
-
-        if (outputList.isEmpty()) {
-            System.out.println("There is no book found.");
-        }
-        return outputList;
+        // Use Stream api for more readable code
+        return books.stream()
+                .filter(book -> book.getTitle().startsWith(title))
+                .collect(toList());
     }
 
     public List<Book> getbookListAuthor(String author) {
-        List<Book> booklist = new ArrayList<>();
-        for (Book book : books) {
-            String fullName = book.getAuthorFirstName() + " " + book.getAuthorLastName();
-            String lastName = book.getAuthorLastName();
-            if (fullName.startsWith(author) || lastName.startsWith(author)) {
-                booklist.add(book);
-            }
-            System.out.println("There is no book found.");
-        }
-        return booklist;
+        // Use Stream api for more readable code
+        // Put logic with Object it belongs: logic for creating the full name of the author doesn't belong here.
+        // I moved it in a method on Book, but you probably want to create an Author Object.
+        return books.stream()
+                .filter(book -> book.getAuthorFullName().startsWith(author) ||
+                        book.getAuthorLastName().startsWith(author))
+                .collect(toList());
     }
 
  /*   public String searchByISBN(String ISBN) {
