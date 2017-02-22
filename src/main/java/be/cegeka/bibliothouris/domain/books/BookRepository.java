@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 //@Named
@@ -87,19 +88,10 @@ public class BookRepository {
     }*/
 
     public String searchByISBN(String ISBN){
-        String output = MakeString(lookForBooksWithThisISBN(ISBN));
-        return output;
-    }
-
-    private String MakeString(List<Book> books) {
-        StringBuilder output = new StringBuilder();
-
-        for (Book book : books) {
-            String det = book.getDetails();
-            output.append(det + "\r\n");
-        }
-
-        return output.toString();
+        // Use stream API
+        return lookForBooksWithThisISBN(ISBN).stream()
+                .map(book -> book.getDetails())
+                .collect(joining("\r\n"));
     }
 
     private List<Book> lookForBooksWithThisISBN(String ISBN) {
